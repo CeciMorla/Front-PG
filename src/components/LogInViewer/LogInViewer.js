@@ -52,13 +52,13 @@ const LogInViewer = () => {
     if(hasLoginErrorG){
       swal('Usuario invalido');
     }
-    
+    console.log(response)
   };
 
   
   function handleLogin (googleData) {
     googleLoginViewer(googleData)
-    
+    console.log('googleData',googleData)
   };
   console.log('idV',idV)
   function inputChange(e) {
