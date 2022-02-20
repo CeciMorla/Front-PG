@@ -5,9 +5,11 @@ import { allTheaters } from "../../redux/actions/index.js";
 import { Navbar, Form, Container, Button } from "react-bootstrap";
 import style from "./LoginTheaters.module.css";
 import swal from "sweetalert";
+import { useHistory } from "react-router-dom.min";
 
 const PasswordRecoveryTheater = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const theaters = useSelector((state) => state.theaters);
   const [email, setEmail] = useState('');
 
@@ -28,7 +30,7 @@ const PasswordRecoveryTheater = () => {
     if (filterTheater) {
       dispatch(postPasswordRecoveryTheater(email));
       swal("Email enviado!", "", "success");
-      window.location.href = `https://front-pg.vercel.app/`;
+      history.push('https://front-pg.vercel.app') 
       setEmail("");
     } else {
       swal("", "Este email no esta registrado!", "error");

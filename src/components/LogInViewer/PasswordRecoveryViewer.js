@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllViewers } from "../../redux/actions/index.js";
 import style from "./LoginViewer.module.css";
 import { Navbar, Form, Container, Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom.min";
 
 import swal from "sweetalert";
 
 const PasswordRecoveryViewer = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const viewers = useSelector((state) => state.viewers);
   const [email, setEmail] = useState('');
 
@@ -28,7 +30,7 @@ const PasswordRecoveryViewer = () => {
     if (filterViewer) {
       dispatch(postPasswordRecoveryViewer(email));
       swal("Email enviado!", "", "success");
-      window.location.href = `https://front-pg.vercel.app/`;
+      history.push('https://front-pg.vercel.app') 
       setEmail("");
     } else {
       swal("", "Este email no esta registrado!", "error");
