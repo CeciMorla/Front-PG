@@ -9,27 +9,27 @@ import swal from "sweetalert";
 const PasswordRecoveryTheater = () => {
   const dispatch = useDispatch();
   const theaters = useSelector((state) => state.theaters);
-  const [input, setInput] = useState({ email: "" });
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
     dispatch(allTheaters());
   }, [dispatch]);
 
   function inputChange(e) {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
+    setEmail(
+      
+       e.target.value,
+    );
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    const filterTheater = theaters?.find((e) => e.email === input?.email);
+    const filterTheater = theaters?.find((e) => e.email === email);
     if (filterTheater) {
-      dispatch(postPasswordRecoveryTheater(input?.email));
+      dispatch(postPasswordRecoveryTheater(email));
       swal("Email enviado!", "", "success");
       window.location.href = `https://front-pg.vercel.app/`;
-      setInput("");
+      setEmail("");
     } else {
       swal("", "Este email no esta registrado!", "error");
     }
@@ -54,7 +54,7 @@ const PasswordRecoveryTheater = () => {
             <Form.Control
               type="text"
               placeholder="Email..."
-              value={input.email}
+              value={email}
               name="email"
               onChange={inputChange}
             />
