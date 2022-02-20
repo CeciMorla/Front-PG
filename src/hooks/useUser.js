@@ -133,7 +133,7 @@ const useUser = () => {
   }, [setStatus,setLoginData,setId])
 
   return {
-    isLogged: Boolean(status),
+    
     isLoginLoading: state.loading,
     hasLoginError: state.error,
     hasLoginErrorG: stateG.error,

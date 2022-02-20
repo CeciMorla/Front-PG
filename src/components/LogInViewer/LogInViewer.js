@@ -45,7 +45,7 @@ const LogInViewer = () => {
     (e) => e.email === input.email && e.password === input.password
   );
   console.log(filterViewer);
-
+  console.log('hasLoginErrorG',hasLoginErrorG)
   
 
   const handleFailure = (response) => {
