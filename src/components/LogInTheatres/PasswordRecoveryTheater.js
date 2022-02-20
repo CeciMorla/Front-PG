@@ -24,9 +24,9 @@ const PasswordRecoveryTheater = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const filterTheater = theaters?.find((e) => e.email === input.email);
+    const filterTheater = theaters?.find((e) => e.email === input?.email);
     if (filterTheater) {
-      dispatch(postPasswordRecoveryTheater(input.email));
+      dispatch(postPasswordRecoveryTheater(input?.email));
       swal("Email enviado!", "", "success");
       window.location.href = `https://front-pg.vercel.app/`;
       setInput("");

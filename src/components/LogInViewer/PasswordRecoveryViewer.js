@@ -25,9 +25,9 @@ const PasswordRecoveryViewer = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const filterViewer = viewers?.find((e) => e.email === input.email);
+    const filterViewer = viewers?.find((e) => e.email === input?.email);
     if (filterViewer) {
-      dispatch(postPasswordRecoveryViewer(input.email));
+      dispatch(postPasswordRecoveryViewer(input?.email));
       swal("Email enviado!", "", "success");
       window.location.href = `https://front-pg.vercel.app/`;
       setInput("");
