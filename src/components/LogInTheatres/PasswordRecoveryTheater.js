@@ -28,7 +28,7 @@ const PasswordRecoveryTheater = () => {
     if (filterTheater) {
       dispatch(postPasswordRecoveryTheater(email));
       swal("Email enviado!", "", "success");
-      //window.location.href = `https://front-pg.vercel.app/`;
+      window.location.href = `https://front-pg.vercel.app/`;
       setEmail("");
     } else {
       swal("", "Este email no esta registrado!", "error");
