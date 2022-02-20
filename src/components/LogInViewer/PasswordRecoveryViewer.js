@@ -29,7 +29,7 @@ const PasswordRecoveryViewer = () => {
     if (filterViewer) {
       postPasswordRecoveryViewer(input.email);
       swal("Email enviado!", "", "success");
-      window.location.href = `http://localhost:3000`;
+      window.location.href = `https://front-pg.vercel.app/`;
       setInput("");
     } else {
       swal("", "Este email no esta registrado!", "error");
