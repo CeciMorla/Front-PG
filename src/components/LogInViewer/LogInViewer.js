@@ -49,7 +49,7 @@ const LogInViewer = () => {
   
 
   const handleFailure = (response) => {
-    swal(response, '', 'error');
+    swal(response);
   };
 
   
