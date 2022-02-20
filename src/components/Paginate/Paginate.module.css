@@ -1,0 +1,16 @@
+.number {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+
+@media (max-width: 768px) {
+  .number {
+    gap: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+  }
+}

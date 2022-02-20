@@ -1,0 +1,10 @@
+.cardContainer {
+  width: 80vw;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin: 2rem;
+}

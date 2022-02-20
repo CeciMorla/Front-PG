@@ -1,0 +1,21 @@
+.buttonsContainer {
+  display: flex;
+  gap: 2rem;
+}
+
+.heigthConfig {
+  height: 12rem;
+  margin-bottom: 3rem;
+}
+
+.searchContainer {
+  margin-top: 0.7rem;
+}
+
+@media (max-width: 768px) {
+  .buttonsContainer {
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+  }
+}

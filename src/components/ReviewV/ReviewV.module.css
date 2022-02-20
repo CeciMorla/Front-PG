@@ -1,0 +1,10 @@
+.comentarioContainer {
+  display: flex;
+  justify-content: center;
+}
+.comentario {
+  width: 50vw;
+  margin-bottom: 2rem;
+}
+.formContainer {
+}

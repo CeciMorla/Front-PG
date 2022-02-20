@@ -1,0 +1,42 @@
+.buttonsContainer {
+  display: flex;
+  gap: 2rem;
+}
+
+.heigthConfig {
+  height: 12rem;
+  margin-bottom: 3rem;
+}
+
+.searchContainer {
+  margin-top: 0.7rem;
+}
+
+.profileImage {
+  height: 5rem;
+  border-radius: 50%;
+}
+
+.name {
+  color: rgb(255, 255, 255);
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .buttonsContainer {
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+  }
+  .profileImage {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+  }
+
+  .profileContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 2rem;
+  }
+}

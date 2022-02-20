@@ -1,0 +1,23 @@
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.heigthConfig {
+  height: 12rem;
+  margin-bottom: 3rem;
+}
+
+.btn {
+  margin: 1rem;
+}
+
+.error {
+  color: white;
+}
+@media (max-width: 768px) {
+  .error {
+    color: white;
+  }
+}
