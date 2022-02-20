@@ -49,7 +49,10 @@ const LogInViewer = () => {
   
 
   const handleFailure = (response) => {
-    swal('Usuario invalido');
+    if(hasLoginErrorG){
+      swal('Usuario invalido');
+    }
+    
   };
 
   
