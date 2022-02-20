@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllViewers } from "../../redux/actions/index.js";
 import style from "./LoginViewer.module.css";
 import { Navbar, Form, Container, Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom.min";
+import { useHistory } from "react-router-dom";
 
 import swal from "sweetalert";
 

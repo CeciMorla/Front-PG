@@ -5,7 +5,7 @@ import { allTheaters } from "../../redux/actions/index.js";
 import { Navbar, Form, Container, Button } from "react-bootstrap";
 import style from "./LoginTheaters.module.css";
 import swal from "sweetalert";
-import { useHistory } from "react-router-dom.min";
+import { useHistory } from "react-router-dom";
 
 const PasswordRecoveryTheater = () => {
   const dispatch = useDispatch();
