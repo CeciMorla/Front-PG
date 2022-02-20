@@ -30,7 +30,7 @@ const PasswordRecoveryTheater = () => {
     if (filterTheater) {
       dispatch(postPasswordRecoveryTheater(email));
       swal("Email enviado!", "", "success");
-      history.push('https://front-pg.vercel.app') 
+      history.push('/') 
       setEmail("");
     } else {
       swal("", "Este email no esta registrado!", "error");
