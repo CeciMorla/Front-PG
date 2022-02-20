@@ -74,7 +74,7 @@ const useUser = () => {
   
     const data = await res.json();
     
-    if(JSON.stringify(data.id) > 0){
+    if(data?.id > 0){
       setLoginData(data.token);
       
       sessionStorage.setItem('loginData', JSON.stringify(data.token));
@@ -106,7 +106,7 @@ const useUser = () => {
     });
   
     const data = await res.json();
-    if(JSON.stringify(data.id) > 0){
+    if(data?.id > 0){
       setLoginData(data.token);
       
       sessionStorage.setItem('loginData', JSON.stringify(data.token));
