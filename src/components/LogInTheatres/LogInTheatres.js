@@ -28,7 +28,14 @@ const LogInTheatres = () => {
   const dispatch = useDispatch();
   const [input, setInput] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
-  const { hasLoginError, hasLoginErrorG,login, googleLoginTheater,idT, statusIdT } = useUser();
+  const {
+    hasLoginError,
+    hasLoginErrorG,
+    login,
+    googleLoginTheater,
+    idT,
+    statusIdT,
+  } = useUser();
   const theaters = useSelector((state) => state.theaters);
   //const [idT,setIdT] = useState('')
 
@@ -40,7 +47,7 @@ const LogInTheatres = () => {
     (e) => e.email === input.email && e.password === input.password
   );
   console.log(filterTheater);
-  console.log('idT',idT)
+  console.log("idT", idT);
   const handleFailure = (response) => {
     swal({
       tittle: response,
@@ -80,48 +87,50 @@ const LogInTheatres = () => {
         expand={false}
       >
         <Container fluid>
-          <Navbar.Brand href="/">A Sala Llena</Navbar.Brand>
+          <Navbar.Brand href="/">
+            <p className={style.logo}>A Sala Llena</p>
+          </Navbar.Brand>
         </Container>
       </Navbar>
 
       <div className={style.loginContainer}>
-        {
-          statusIdT ? 
-          <Redirect to={`/theaterHome/${btoa(statusIdT)}`}/> :
+        {statusIdT ? (
+          <Redirect to={`/theaterHome/${btoa(statusIdT)}`} />
+        ) : (
           <form onSubmit={handleSubmit}>
-        <Form >
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Email..."
-              value={input.email}
-              name="email"
-              onChange={handleChange}
-            />
-            {errors.email && <p>{errors.email}</p>}
-            <Form.Text className="text-muted">
-              Nunca compartiremos esta información
-            </Form.Text>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="password"
-              value={input.password}
-              name="password"
-              onChange={handleChange}
-            />
-            {errors.password && <p>{errors.password}</p>}
-          </Form.Group>
-            <Button variant="dark" type="submit" onClick={handleSubmit}>
-              Iniciar Sesion
-            </Button>
-          </Form>
-        </form>
-        }
-        
+            <Form>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Email..."
+                  value={input.email}
+                  name="email"
+                  onChange={handleChange}
+                />
+                {errors.email && <p>{errors.email}</p>}
+                <Form.Text className="text-muted">
+                  Nunca compartiremos esta información
+                </Form.Text>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="password"
+                  value={input.password}
+                  name="password"
+                  onChange={handleChange}
+                />
+                {errors.password && <p>{errors.password}</p>}
+              </Form.Group>
+              <Button variant="dark" type="submit" onClick={handleSubmit}>
+                Iniciar Sesion
+              </Button>
+            </Form>
+          </form>
+        )}
+
         {hasLoginError && <strong>Usuario o contraseña invalidos</strong>}
         <div className={style.btn}>
           <Link to="/theaterRegister">
@@ -131,21 +140,20 @@ const LogInTheatres = () => {
           </Link>
         </div>
         <Link to="/passwordRecoveryTheater">¿Olvidaste tu contraseña?</Link>
-        {idT > 0 ? 
+        {idT > 0 ? (
           <Redirect to={`/theaterHome/${btoa(idT)}`} />
-         :  
+        ) : (
           <form>
-          <GoogleLogin
-            clientId="506901482868-h6pf1ffiuv7vicavl8btlunj18oeamjr.apps.googleusercontent.com"
-            buttonText="Log in with Google"
-            onSuccess={handleLogin}
-            onFailure={handleFailure}
-            cookiePolicy={"single_host_origin"}
-          />
-          {hasLoginErrorG && <strong>Usuario invalido</strong>}
+            <GoogleLogin
+              clientId="506901482868-h6pf1ffiuv7vicavl8btlunj18oeamjr.apps.googleusercontent.com"
+              buttonText="Log in with Google"
+              onSuccess={handleLogin}
+              onFailure={handleFailure}
+              cookiePolicy={"single_host_origin"}
+            />
+            {hasLoginErrorG && <strong>Usuario invalido</strong>}
           </form>
-        }
-        
+        )}
       </div>
     </div>
   );

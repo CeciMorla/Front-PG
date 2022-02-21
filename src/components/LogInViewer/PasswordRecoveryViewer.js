@@ -5,7 +5,6 @@ import { getAllViewers } from "../../redux/actions/index.js";
 import style from "./LoginViewer.module.css";
 import { Navbar, Form, Container, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-
 import swal from "sweetalert";
 
 const PasswordRecoveryViewer = () => {
@@ -20,6 +19,7 @@ const PasswordRecoveryViewer = () => {
 
   function inputChange(e) {
     setEmail(
+      
        e.target.value,
     );
   }
@@ -28,9 +28,9 @@ const PasswordRecoveryViewer = () => {
     e.preventDefault();
     const filterViewer = viewers?.find((e) => e.email === email);
     if (filterViewer) {
-      dispatch(postPasswordRecoveryViewer(email));
+      postPasswordRecoveryViewer(email);
       swal("Email enviado!", "", "success");
-      history.push('/') 
+      history.push('/');
       setEmail("");
     } else {
       swal("", "Este email no esta registrado!", "error");
@@ -46,7 +46,9 @@ const PasswordRecoveryViewer = () => {
         expand={false}
       >
         <Container fluid>
-          <Navbar.Brand href="/">A Sala Llena</Navbar.Brand>
+          <Navbar.Brand href="/">
+            <p className={style.logo}>A Sala Llena</p>
+          </Navbar.Brand>
         </Container>
       </Navbar>
       <h2>Ingresa tu correo electronico</h2>

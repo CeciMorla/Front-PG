@@ -21,6 +21,11 @@
   color: rgb(255, 255, 255);
   margin-top: 1rem;
 }
+.logo {
+  font-family: Lobster Two;
+  font-size: 2.5rem;
+  margin-left: 1rem;
+}
 
 @media (max-width: 768px) {
   .buttonsContainer {
@@ -38,5 +43,10 @@
     display: flex;
     flex-direction: row-reverse;
     gap: 2rem;
+  }
+
+  .logo {
+    font-size: 2rem;
+    margin-left: 0.5rem;
   }
 }

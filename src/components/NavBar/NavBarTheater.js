@@ -4,8 +4,9 @@ import useUser from "../../hooks/useUser";
 import style from "./NavBarTheater.module.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import { Navbar, Container, Button } from "react-bootstrap";
+import SearchBar from "../SearchBar/SearchBar";
 
-export default function NavBarTheater({ id, img }) {
+export default function NavBarTheater({ id, img, name }) {
   const { logout } = useUser();
 
   const history = useHistory();
@@ -24,11 +25,16 @@ export default function NavBarTheater({ id, img }) {
         expand={false}
       >
         <Container fluid>
-          <div className={style.left}>
-            <Navbar.Brand href={`/theaterHome/${btoa(id)}`}>
-              A Sala Llena
-            </Navbar.Brand>
+          <Navbar.Brand href={`/theaterHome/${btoa(id)}`}>
+            <p className={style.logo}>A Sala Llena</p>
+          </Navbar.Brand>
+          <div className={style.profileContainer}>
             <img className={style.profileImage} src={img} alt="img" />
+            <p className={style.name}>Hola {name}!</p>
+          </div>
+
+          <div className={style.searchContainer}>
+            <SearchBar />
           </div>
 
           <div className={style.buttonsContainer}>
@@ -48,7 +54,9 @@ export default function NavBarTheater({ id, img }) {
                   <Button variant="outline-dark">Ventas</Button>
                 </Dropdown.Item>
                 <Dropdown.Item
-                  onClick={() => history.push(`/editProfileTheater/${btoa(id)}`)}
+                  onClick={() =>
+                    history.push(`/editProfileTheater/${btoa(id)}`)
+                  }
                 >
                   <Button variant="outline-dark">Perfil</Button>
                 </Dropdown.Item>

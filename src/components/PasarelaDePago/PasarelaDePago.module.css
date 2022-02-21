@@ -1,13 +1,23 @@
-.logo {
-    margin-top: 2.5rem;
-    margin-left: 1rem;
-    height: 8rem;
-    width: auto;
-    border-radius: 50%;
-    box-shadow: 0 5px 25px rgb(255, 255, 255);
-  }
-.seat{
+.seat {
   margin-top: 20px;
   display: flex;
   justify-content: center;
+}
+
+.logo {
+  color: white;
+  font-family: Lobster Two;
+  font-size: 2.5rem;
+  margin-left: 1rem;
+}
+.heigthConfig {
+  height: 12rem;
+  margin-bottom: 3rem;
+}
+
+.tickets {
+  margin: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }

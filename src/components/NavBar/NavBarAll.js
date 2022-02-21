@@ -21,7 +21,9 @@ export default function NavBarAll({ setActualPage, setOrder }) {
         expand={false}
       >
         <Container fluid>
-          <Navbar.Brand href="/">A Sala Llena</Navbar.Brand>
+          <Navbar.Brand href="/">
+            <p className={style.logo}>A Sala Llena</p>
+          </Navbar.Brand>
           <div className={style.searchContainer}>
             <SearchBar />
           </div>

@@ -82,7 +82,7 @@ const ViewerHistory = () => {
       <div className={style.navContainer}>
         <NavBarPerfilViewer img={viewer?.image} name={viewer?.name} />
       </div>
-      <h2>Opioniones</h2>
+      <h2>Opiniones</h2>
 
       <div className={style.container}>
         {filterShow?.length && filterTicket?.length ? (

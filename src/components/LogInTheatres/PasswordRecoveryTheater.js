@@ -19,7 +19,6 @@ const PasswordRecoveryTheater = () => {
 
   function inputChange(e) {
     setEmail(
-      
        e.target.value,
     );
   }
@@ -28,9 +27,9 @@ const PasswordRecoveryTheater = () => {
     e.preventDefault();
     const filterTheater = theaters?.find((e) => e.email === email);
     if (filterTheater) {
-      dispatch(postPasswordRecoveryTheater(email));
+      postPasswordRecoveryTheater(email);
       swal("Email enviado!", "", "success");
-      history.push('/') 
+      history.push('/');
       setEmail("");
     } else {
       swal("", "Este email no esta registrado!", "error");
@@ -46,7 +45,9 @@ const PasswordRecoveryTheater = () => {
         expand={false}
       >
         <Container fluid>
-          <Navbar.Brand href="/">A Sala Llena</Navbar.Brand>
+          <Navbar.Brand href="/">
+            <p className={style.logo}>A Sala Llena</p>
+          </Navbar.Brand>
         </Container>
       </Navbar>
       <h2>Ingresa tu correo electronico</h2>

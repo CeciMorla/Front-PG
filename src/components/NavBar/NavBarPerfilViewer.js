@@ -24,7 +24,9 @@ const NavBarPerfilViewer = ({ img, name }) => {
       >
         <Container fluid>
           <div className={style.left}>
-            <Navbar.Brand href={`/viewerHome/${id}`}>A Sala Llena</Navbar.Brand>
+            <Navbar.Brand href={`/viewerHome/${id}`}>
+              <p className={style.logo}>A Sala Llena</p>
+            </Navbar.Brand>
             <div className={style.profileContainer}>
               <img className={style.profileImage} src={img} alt="img" />
               <p className={style.name}>Hola {name}!</p>
@@ -35,7 +37,6 @@ const NavBarPerfilViewer = ({ img, name }) => {
               <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                 Mi cuenta
               </Dropdown.Toggle>
-
               <Dropdown.Menu>
                 <Dropdown.Item>
                   <Link to={`/formPutViewer/${id}`}>

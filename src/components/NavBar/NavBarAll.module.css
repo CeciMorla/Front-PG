@@ -3,6 +3,12 @@
   gap: 2rem;
 }
 
+.logo {
+  font-family: Lobster Two;
+  font-size: 2.5rem;
+  margin-left: 1rem;
+}
+
 .heigthConfig {
   height: 12rem;
   margin-bottom: 3rem;
@@ -17,5 +23,10 @@
     width: 100vw;
     display: flex;
     justify-content: space-between;
+  }
+  .logo {
+    font-size: 2rem;
+    margin-left: 0.5rem;
+    width: 12rem;
   }
 }

@@ -37,6 +37,10 @@ const initialState = {
   tickets: [],
   link: "",
   allreviews: [],
+  filtersProv:[],
+  filtersTheaters: [],
+  filtersGenres: [],
+  filtersRates: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -66,6 +70,40 @@ function rootReducer(state = initialState, action) {
 
     case FILTER_PROVINCE:
       let filterP = state.allshows
+      let filterPperTheater = state.filtersTheaters;
+      let filterPperGenre = state.filtersGenres;
+      let filterPperRated = state.filtersRates;
+      if(filterPperTheater.length > 0){
+        let filterProvince2 =
+        action.payload === "all"
+          ? filterPperTheater
+          : filterPperTheater?.filter((e) => e.theater?.province.includes(action.payload));
+      return {
+        ...state,
+        shows: filterProvince2,
+        filtersProv: filterProvince2
+      };
+      } else if(filterPperGenre.length > 0) {
+        let filterProvince3 =
+        action.payload === "all"
+          ? filterPperGenre
+          : filterPperGenre?.filter((e) => e.theater?.province.includes(action.payload));
+      return {
+        ...state,
+        shows: filterProvince3,
+        filtersProv: filterProvince3
+      };
+      } else if(filterPperRated.length > 0) {
+        let filterProvince4 =
+        action.payload === "all"
+          ? filterPperRated
+          : filterPperRated?.filter((e) => e.theater?.province.includes(action.payload));
+      return {
+        ...state,
+        shows: filterProvince4,
+        filtersProv: filterProvince4
+      };
+      }
       let filterProvince =
         action.payload === "all"
           ? filterP
@@ -73,6 +111,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         shows: filterProvince,
+        filtersProv: filterProvince
       };
     case GET_ALL_SHOWS:
       return {
@@ -96,27 +135,126 @@ function rootReducer(state = initialState, action) {
         theaters: action.payload,
       };
     case FILTER_THEATER:
+      let filterTheaterPerProvince = state.filtersProv;
+      let filterTheaterPerGenre = state.filtersGenres;
+      let filterTheaterPerRated = state.filtersRates;
       let filterT = state.allshows
-      let filterTheater =
+      if(filterTheaterPerGenre.length > 0) {
+        let filterTheater3 =
         action.payload === "all"
-          ? filterT
-          : filterT.filter((e) => e.theater.name.includes(action.payload));
+          ? filterTheaterPerGenre
+          : filterTheaterPerGenre.filter((e) => e.theater.name.includes(action.payload));
+        return {
+          ...state,
+          shows: filterTheater3,
+          filtersTheaters: filterTheater3
+        } 
+      }else if(filterTheaterPerProvince.length > 0){
+      let filterTheater2 =
+      action.payload === "all"
+        ? filterTheaterPerProvince
+        : filterTheaterPerProvince.filter((e) => e.theater.name.includes(action.payload));
+      return {
+        ...state,
+        shows: filterTheater2,
+        filtersTheaters: filterTheater2
+      };
+      } else if(filterTheaterPerRated.length > 0) {
+        let filterTheater4 =
+        action.payload === "all"
+          ? filterTheaterPerRated
+          : filterTheaterPerRated.filter((e) => e.theater.name.includes(action.payload));
+        return {
+          ...state,
+          shows: filterTheater4,
+          filtersTheaters: filterTheater4
+        } 
+      }
+      let filterTheater =
+      action.payload === "all"
+        ? filterT
+        : filterT.filter((e) => e.theater.name.includes(action.payload));
+        console.log(filterTheater)
+        console.log(filterT)
       return {
         ...state,
         shows: filterTheater,
-      };
+        filtersTheaters: filterTheater
+      } 
+      
+      
     case FILTER_GENRE:
       let filterG = state.allshows
-      let filterGenre =
+      let filterGenreperProv = state.filtersProv;
+      let filterGenreperTheater = state.filtersTheaters;
+      if(filterGenreperProv.length > 0) {
+        let filterGenre2 =
+        action.payload === "all"
+          ? filterGenreperProv
+          : filterGenreperProv.filter((e) => e.genre.includes(action.payload));
+      return {
+        ...state,
+        shows: filterGenre2,
+        filtersGenres: filterGenre2
+      }
+    } else if (filterGenreperTheater.length > 0) {
+      let filterGenre3 =
+      action.payload === "all"
+        ? filterGenreperTheater
+        : filterGenreperTheater.filter((e) => e.genre.includes(action.payload));
+    return {
+      ...state,
+      shows: filterGenre3,
+      filtersGenres: filterGenre3
+    }
+    } else {
+        let filterGenre =
         action.payload === "all"
           ? filterG
           : filterG.filter((e) => e.genre.includes(action.payload));
       return {
         ...state,
         shows: filterGenre,
-      };
+        filtersGenres: filterGenre
+      }
+    }
+
     case FILTER_RATED:
-      let filterR = state.allshows
+      let filterR = state.allshows;
+      let filterRperProv = state.filtersProv;
+      let filterRperTheaters = state.filtersTheaters;
+      let filterRperGenre = state.filtersGenres;
+      if(filterRperProv.length > 0) {
+        let filterRated2 =
+        action.payload === "all"
+          ? filterRperProv
+          : filterRperProv.filter((e) => e.rated.includes(action.payload));
+      return {
+        ...state,
+        shows: filterRated2,
+        filtersRates: filterRated2
+      };
+      } else if(filterRperTheaters.length > 0) {
+        let filterRated3 =
+        action.payload === "all"
+          ? filterRperTheaters
+          : filterRperTheaters.filter((e) => e.rated.includes(action.payload));
+      return {
+        ...state,
+        shows: filterRated3,
+        filtersRates: filterRated3
+      };
+      } else if(filterRperGenre.length > 0) {
+        let filterRated4 =
+        action.payload === "all"
+          ? filterRperGenre
+          : filterRperGenre.filter((e) => e.rated.includes(action.payload));
+      return {
+        ...state,
+        shows: filterRated4,
+        filtersRates: filterRated4
+      };
+      }
       let filterRated =
         action.payload === "all"
           ? filterR
