@@ -18,7 +18,8 @@ const HomeViewer = () => {
   const [qty] = useState(8);
   const iLastShow = actualPage * qty; //8
   const iFirstShow = iLastShow - qty;
-  const actualShow = allshows?.slice(iFirstShow, iLastShow);
+  const filterShow = allshows?.filter(e => e.released === false);
+  const actualShow = filterShow?.slice(iFirstShow, iLastShow);
   const detail = useSelector((state) => state.viewerDetail);
   const { id } = useParams();
   const paginate = (number) => {
@@ -35,7 +36,7 @@ const HomeViewer = () => {
     dispatch(allShows());
   }, [dispatch, decod]);
 
-  const shows = allshows?.filter(
+  const shows = filterShow?.filter(
     (e) => e.theater?.province === detail?.province
   );
   // console.log(shows);
@@ -54,7 +55,7 @@ const HomeViewer = () => {
         {shows?.length > 0 ? (
           <CarouselContainer allshows={shows} />
         ) : (
-          <CarouselContainer allshows={allshows} />
+          <CarouselContainer allshows={filterShow} />
         )}
       </div>
       <div className={style.showsContainer}>
@@ -65,7 +66,7 @@ const HomeViewer = () => {
         )}
       </div>
       <div className={style.paginate}>
-        <Paginate qty={qty} allshows={allshows?.length} paginate={paginate} />
+        <Paginate qty={qty} allshows={filterShow?.length} paginate={paginate} />
       </div>
     </div>
   );
