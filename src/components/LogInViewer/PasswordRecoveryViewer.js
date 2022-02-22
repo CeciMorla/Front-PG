@@ -29,7 +29,7 @@ const PasswordRecoveryViewer = () => {
       postPasswordRecoveryViewer(email);
       swal("Email enviado!", "", "success");
       history.push('/')
-      setInput("");
+      setEmail("");
     } else {
       swal("", "Este email no esta registrado!", "error");
     }
