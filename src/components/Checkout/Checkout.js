@@ -27,12 +27,10 @@ export default function Checkout({
   // var equalShowId = show?.filter((s) => s?.showId === Number(showId));
 
   // console.log(equalShowId); // me trae solo los tickets de los asientos disponibles
-  // var total = 0;
-  // if (seatNumber.length > 0) {
-  //   for (var i = 0; i < 1; i++) {
-  //     total = equalShowId[i]?.price * seatNumber?.length;
-  //   }
-  // }
+   var total = 0;
+   if (seatNumber.length > 0) {
+    total = preciofinal * seatNumber?.length;
+   }
 
   function buttonMp() {
     dispatch(checkoutPay({ seatNumber, showId, idViewer }));
@@ -121,7 +119,7 @@ export default function Checkout({
   }
 
   let dateTimer = `${show?.date} ${show?.time}`;
-  let total = preciofinal * seatNumber?.length;
+  
   return (
     <div>
       <div className={style.inputContainer}>
