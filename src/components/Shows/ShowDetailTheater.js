@@ -51,7 +51,7 @@ const ShowDetailTheater = () => {
             <img src={show.image} className={style.image} alt="img" />
           </div>
           <div className={style.boxSummary}>
-            <h3>Descripcion</h3>
+            <h3>Descripción</h3>
             <p>{show?.summary}</p>
           </div>
         </div>
@@ -60,15 +60,15 @@ const ShowDetailTheater = () => {
         <div className={style.datos}>
           <div className={style.first}>
             <div className={style.box}>
-              <h3>Tipo de publico </h3>
+              <h3>Tipo de público </h3>
               <h4>{show?.rated} </h4>
             </div>
             <div className={style.box}>
-              <h3>Duracion </h3>
+              <h3>Duración </h3>
               <h4>{show?.length} </h4>
             </div>
             <div className={style.box}>
-              <h3>Genero </h3>
+              <h3>Género </h3>
               <h4>{show?.genre} </h4>
             </div>
           </div>

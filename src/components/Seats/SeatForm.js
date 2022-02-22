@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import style from "./Seat.module.css";
+import style from "./SeatForm.module.css";
 import { useSelector } from "react-redux";
 import swal from "sweetalert";
 
@@ -18,7 +18,7 @@ const SeatForm = ({
   const sillas = new Array(Math.ceil(10)).fill(0).map((el, index) => index + 1);
   const [available, setAvailable] = useState(
     showdetail.seatsAvailable && showdetail.seatsAvailable.length > 0
-      ? showdetail.seatsAvailable.map(el=>el)
+      ? showdetail.seatsAvailable.map((el) => el)
       : JSON.parse(window.localStorage.getItem("show"))
   );
   const [selected, setSelected] = useState([]);
@@ -29,7 +29,7 @@ const SeatForm = ({
     let silla = `${r}-${s}`;
     // console.log(`row: ${r}, seat: ${s}`)
     if (!selected.includes(silla) && form) {
-      console.log('showdetail: ', showdetail);
+      console.log("showdetail: ", showdetail);
       setSelected([...selected, silla]);
       setSeatAvailable([...seatsavailable, silla]);
     } else if (form && selected.includes(silla)) {
@@ -56,7 +56,7 @@ const SeatForm = ({
   useEffect(() => {
     if (showdetail.seatsAvailable && showdetail.seatsAvailable.length > 0) {
       console.log("showdetail.seatsAvailable: ", showdetail.seatsAvailable);
-      let array = showdetail.seatsAvailable
+      let array = showdetail.seatsAvailable;
       window.localStorage.setItem("show", JSON.stringify(array));
     } else if (!showdetail.seatsAvailable) {
       console.log("else: ", JSON.parse(window.localStorage.getItem("show")));
@@ -72,26 +72,26 @@ const SeatForm = ({
           <ul className={style.showcase}>
             <li>
               <div className={style.seat}></div>
-              <small>Occupied</small>
+              <small className={style.label}>Ocupado</small>
             </li>
             <li>
               <div className={`${style.seat} ${style.selected}`}></div>
-              <small>Selected</small>
+              <small className={style.label}>Seleccion</small>
             </li>
           </ul>
         ) : (
           <ul className={style.showcase}>
             <li>
               <div className={style.seat}></div>
-              <small>N/A</small>
+              <small>Disponible</small>
             </li>
             <li>
               <div className={`${style.seat} ${style.selected}`}></div>
-              <small>Selected</small>
+              <small>Seleccionado</small>
             </li>
             <li>
               <div className={`${style.seat} ${style.occupied}`}></div>
-              <small>Occupied</small>
+              <small>Ocupado</small>
             </li>
           </ul>
         )}

@@ -6,7 +6,7 @@ import { loginTheater, loginViewer } from "../redux/actions/index.js";
 const useUser = () => {
   const { status, setStatus,loginData,setLoginData,id,setId,error,setError} = useContext(Context);
   const [state, setState] = useState({ loading: false, error: false });
-  const [stateG, setStateG] = useState({ loading: false, error: false });
+  const [stateG, setStateG] = useState(false);
   const [idV,setIdV] = useState('');
   const [idT,setIdT] = useState('');
   const [statusIdV,setStatusIdV] = useState('');
@@ -19,12 +19,17 @@ const useUser = () => {
       setState({ loading: true, error: false });
       loginTheater(input)
         .then((data) => {
-          window.sessionStorage.setItem("status", data.isLogged);
+          if(data.error){
+            setState(true);
+          }else{
+            window.sessionStorage.setItem("status", data.isLogged);
           window.sessionStorage.setItem("id", data.id);
           
-          setState({ loading: false, error: false });
+          
           setStatus(data.isLogged);
           setStatusIdT(window.sessionStorage.getItem('id').valueOf())
+          }
+          
         })
         .catch((err) => {
           window.sessionStorage.removeItem("status");
@@ -42,27 +47,31 @@ const useUser = () => {
       setState({ loading: true, error: false });
       loginViewer(input)
         .then((data) => {
-          window.sessionStorage.setItem("status", data.isLogged);
+          if(data.error){
+            setState(true);
+          }else{
+            
+            window.sessionStorage.setItem("status", data.isLogged);
           window.sessionStorage.setItem("id", data.id);
-          setState({ loading: false, error: false });
+          
           setStatus(data.isLogged);
           setStatusIdV(window.sessionStorage.getItem('id').valueOf())
+          }
+          
           
         })
         .catch((err) => {
           window.sessionStorage.removeItem("status");
           window.sessionStorage.removeItem("id");
-          
           setState({ loading: false, error: true });
           console.error(err);
         });
-    },
-    [setStatus]
+    },[setStatus]
   );
 
   const googleLoginViewer = async (googleData) => {
     try {
-      const res = await fetch('https://back-pg.herokuapp.com/login/google/viewer', {
+      const res = await fetch('http://localhost:3001/login/google/viewer', {
       method: 'POST',
       body: JSON.stringify({
         token: googleData.tokenId,
@@ -74,7 +83,7 @@ const useUser = () => {
   
     const data = await res.json();
     
-    if(data?.id > 0){
+    if(JSON.stringify(data.id) > 0){
       setLoginData(data.token);
       
       sessionStorage.setItem('loginData', JSON.stringify(data.token));
@@ -95,7 +104,7 @@ const useUser = () => {
   };
   
   const googleLoginTheater = async (googleData) => {
-    const res = await fetch('https://back-pg.herokuapp.com/login/google/theater', {
+    const res = await fetch('http://localhost:3001/login/google/theater', {
       method: 'POST',
       body: JSON.stringify({
         token: googleData.tokenId,
@@ -106,7 +115,7 @@ const useUser = () => {
     });
   
     const data = await res.json();
-    if(data?.id > 0){
+    if(JSON.stringify(data.id) > 0){
       setLoginData(data.token);
       
       sessionStorage.setItem('loginData', JSON.stringify(data.token));
@@ -129,11 +138,11 @@ const useUser = () => {
     setStatus(null);
     setLoginData(null);
     setId(null);
-    window.location.href="https://front-pg.vercel.app/"
+    window.location.href="http://localhost:3000/"
   }, [setStatus,setLoginData,setId])
 
   return {
-    
+    isLogged: Boolean(status),
     isLoginLoading: state.loading,
     hasLoginError: state.error,
     hasLoginErrorG: stateG.error,

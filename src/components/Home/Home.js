@@ -16,7 +16,7 @@ export default function Home() {
   const [qty] = useState(8);
   const iLastShow = actualPage * qty; //8
   const iFirstShow = iLastShow - qty;
-  const filterShow = allshows?.filter(e => e.released === false);
+  const filterShow = allshows?.filter((e) => e.released === false);
   const actualShow = filterShow?.slice(iFirstShow, iLastShow);
 
   console.log(actualShow);
@@ -32,19 +32,21 @@ export default function Home() {
       <div className={style.navContainer}>
         <NavBarAll setActualPage={setActualPage} setOrder={setOrder} />
       </div>
-      {filterShow?.length === 0? <p></p>: 
-      <div className={style.carouselContainer}>
-        <CarouselContainer allshows={filterShow} />
-      </div>
-      }
-      
+      {filterShow?.length === 0 ? (
+        <img src='https://media.giphy.com/media/q15kbCtGFqwx8wYx1n/giphy.gif' alt='img'/>
+      ) : (
+        <div className={style.carouselContainer}>
+          <CarouselContainer allshows={filterShow} />
+        </div>
+      )}
+
       <div>
         {actualShow?.length ? (
           <div className={style.showsContainer}>
             <Shows actualShow={actualShow} />
           </div>
         ) : (
-          <p>En este momento no hay espectáculos con esos filtros</p>
+          <img src='https://media.giphy.com/media/q15kbCtGFqwx8wYx1n/giphy.gif' alt='img'/>
         )}
       </div>
 

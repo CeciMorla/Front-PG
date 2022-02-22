@@ -1,11 +1,19 @@
 import { useState, useEffect } from "react";
 import style from "./Seat.module.css";
 import { useSelector } from "react-redux";
-import Checkout from '../Checkout/Checkout';
+import Checkout from "../Checkout/Checkout";
 import swal from "sweetalert";
-import { Button } from "bootstrap";
 
-const MySeats = ({ seatsNumber, setSeatAvailable, seatsavailable, form, preciofinal, setPreciofinal, id, idV }) => {
+const MySeats = ({
+  seatsNumber,
+  setSeatAvailable,
+  seatsavailable,
+  form,
+  preciofinal,
+  setPreciofinal,
+  id,
+  idV,
+}) => {
   const { showdetail } = useSelector((s) => s);
   const filas = new Array(Math.ceil(8)).fill(0).map((el, index) => index + 1);
   const sillas = new Array(Math.ceil(10)).fill(0).map((el, index) => index + 1);
@@ -37,24 +45,24 @@ const MySeats = ({ seatsNumber, setSeatAvailable, seatsavailable, form, preciofi
     } else if (selected.includes(silla)) {
       setSelected(selected.filter((el) => el !== silla));
       setAvailable([...available, silla]);
-    }else if(seatsNumber==0){
+    } else if (seatsNumber == 0) {
       swal({
-        text: "Indica cuantos asientos quieres",
-        icon: 'error',
-        button: false
+        text: "Indique cuantos asientos quiere",
+        icon: "error",
+        button: false,
       });
     } else if (selected.length == seatsNumber) {
       swal({
-        text: "No puedes escoger más tickets",
-        icon: 'error',
-        button: false
+        text: "No puede escoger más tickets",
+        icon: "error",
+        button: false,
       });
     }
   };
   useEffect(() => {
     if (showdetail.seatsAvailable && showdetail.seatsAvailable.length > 0) {
       console.log("showdetail.seatsAvailable", showdetail.seatsAvailable);
-      let array = showdetail.seatsAvailable
+      let array = showdetail.seatsAvailable;
       window.localStorage.setItem("show", JSON.stringify(array));
     } else if (!showdetail.seatsAvailable) {
       console.log("else: ", JSON.parse(window.localStorage.getItem("show")));
@@ -62,7 +70,7 @@ const MySeats = ({ seatsNumber, setSeatAvailable, seatsavailable, form, preciofi
   }, [showdetail.seatsAvailable]);
 
   console.log(selected);
-  console.log(setSelected)
+  console.log(setSelected);
   return (
     <div className={style.seatContainer}>
       <div className={style.component}>
@@ -70,26 +78,26 @@ const MySeats = ({ seatsNumber, setSeatAvailable, seatsavailable, form, preciofi
           <ul className={style.showcase}>
             <li>
               <div className={style.seat}></div>
-              <small>Occupied</small>
+              <small>Ocupado</small>
             </li>
             <li>
               <div className={`${style.seat} ${style.selected}`}></div>
-              <small>Selected</small>
+              <small>Seleccionado</small>
             </li>
           </ul>
         ) : (
           <ul className={style.showcase}>
             <li>
               <div className={style.seat}></div>
-              <small>N/A</small>
+              <small className={style.label}>Disponible</small>
             </li>
             <li>
               <div className={`${style.seat} ${style.selected}`}></div>
-              <small>Selected</small>
+              <small className={style.label}>Seleccionado</small>
             </li>
             <li>
               <div className={`${style.seat} ${style.occupied}`}></div>
-              <small>Occupied</small>
+              <small className={style.label}>Ocupado</small>
             </li>
           </ul>
         )}
@@ -131,7 +139,13 @@ const MySeats = ({ seatsNumber, setSeatAvailable, seatsavailable, form, preciofi
           ))}
         </div>
       </div>
-      <Checkout selected={selected} setSelected={setSelected} seatsavailable={seatsavailable} id={id} idV={idV}/>
+      <Checkout
+        selected={selected}
+        setSelected={setSelected}
+        seatsavailable={seatsavailable}
+        id={id}
+        idV={idV}
+      />
     </div>
   );
 };

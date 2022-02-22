@@ -23,9 +23,7 @@ export default function Checkout({
   console.log(tickets);
 
   var equalShowId = tickets?.filter((t) => t?.showId === Number(showId));
-  console.log(equalShowId); // me trae solo los tickets de los asientos disponibles
-  //var total = equalShowId?.price * seatNumber?.length;
-  console.log("equalShowId", equalShowId);
+  // console.log(equalShowId); // me trae solo los tickets de los asientos disponibles
   var total = 0;
   if (seatNumber.length > 0) {
     for (var i = 0; i < 1; i++) {
@@ -40,7 +38,7 @@ export default function Checkout({
   return (
     <div>
       <div className={style.inputContainer}>
-        <label>Numero de entradas</label>
+        <label>Número de entradas</label>
         <input
           value={selected}
           disabled
@@ -55,7 +53,9 @@ export default function Checkout({
         <button className="btn btn-dark" onClick={(e) => buttonMp(e)}>
           Confirmar pago
         </button>
-        {link && window.open(link)}
+        {link && 
+          window.open(link, '_self')
+        }
       </div>
       <br />
     </div>

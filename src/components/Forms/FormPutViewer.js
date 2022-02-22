@@ -45,14 +45,14 @@ const FormPutViewer = () => {
       image: data.image,
     };
     swal({
-      title: "Porfavor confirma tus cambios?",
+      title: "Por favor confirma tus cambios",
       icon: "warning",
       buttons: ["Cancel", "Confirm"],
     }).then((res) => {
       if (res) {
         dispatch(putViewer(decod, cara));
         swal({
-          text: "usuario actualizado con exito",
+          text: "Usuario actualizado con éxito",
           icon: "success",
           buttons: false,
         });
@@ -69,14 +69,14 @@ const FormPutViewer = () => {
 
   function handleSubmitDelete(event) {
     swal({
-      title: "Estas seguro?",
-      text: "Una vez borrado, no lo podras recuperar!",
+      title: "Estás seguro?",
+      text: "Una vez borrado, no lo podrás recuperar!",
       icon: "warning",
       buttons: ["Cancel", "Confirm"],
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        swal("Usuario borrado con exito", {
+        swal("Usuario borrado con éxito", {
           icon: "success",
           button: false,
         });
@@ -84,7 +84,7 @@ const FormPutViewer = () => {
         history.push("/");
       } else {
         swal({
-          title: "Tu perfil seguira con vida ✔👀!",
+          title: "Tu perfil seguirá con vida ✔👀!",
           button: false,
         });
       }

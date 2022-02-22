@@ -1,3 +1,7 @@
+.container {
+  margin-bottom: 4rem;
+}
+
 .loginContainer {
   display: flex;
   flex-direction: column;
@@ -21,6 +25,10 @@
 
 .error {
   color: white;
+}
+
+.googleContainer {
+  margin: 3rem;
 }
 @media (max-width: 768px) {
   .error {

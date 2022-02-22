@@ -36,7 +36,6 @@ const Newsletter = () => {
     });
   }
   const HandleCheck = (e) => {
-    e.preventDefault();
     if (e.target.checked) {
       setInput((prevInput) => ({
         ...prevInput,
@@ -68,8 +67,8 @@ const Newsletter = () => {
       </div>
       <div className={style.newsletter}>
         <h2 className={style.title}>
-          Suscribite a nuestro newsletter para recibir informacion sobre los
-          ultimos shows
+          Suscribite a nuestro newsletter para recibir información sobre los
+          últimos shows
         </h2>
         <Form>
           <div className={style.checkContainer}>
@@ -77,7 +76,7 @@ const Newsletter = () => {
               <Form.Check
                 variant="dark"
                 type="checkbox"
-                label="Hace click para suscribirte"
+                label="Hacé clíck para suscribirte"
                 onChange={(e) => HandleCheck(e)}
               />
             </Form.Group>
@@ -85,7 +84,7 @@ const Newsletter = () => {
           <div className={style.select}>
             <Form.Select size="lg" onChange={(e) => HandleChange(e)}>
               <option defaultValue="" hidden>
-                Elegi tu teatro favorito
+                Elegí tu teatro favorito
               </option>
               {theaters?.map((el) => {
                 return (

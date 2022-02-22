@@ -161,9 +161,6 @@ export default function Filters({ setActualPage, setOrder }) {
           <option value="Apta para mayores de 18 años">
             Apta para mayores de 18 años
           </option>
-          <option value="Exhibición condicionada.">
-            Exhibición condicionada.
-          </option>
         </Form.Select>
       </div>
       {/* // ------------- filtro por Cantidad de entradas----------

@@ -18,8 +18,7 @@ const HomeViewer = () => {
   const [qty] = useState(8);
   const iLastShow = actualPage * qty; //8
   const iFirstShow = iLastShow - qty;
-  const filterShow = allshows?.filter(e => e.released === false);
-  const actualShow = filterShow?.slice(iFirstShow, iLastShow);
+  const actualShow = allshows?.slice(iFirstShow, iLastShow);
   const detail = useSelector((state) => state.viewerDetail);
   const { id } = useParams();
   const paginate = (number) => {
@@ -36,7 +35,7 @@ const HomeViewer = () => {
     dispatch(allShows());
   }, [dispatch, decod]);
 
-  const shows = filterShow?.filter(
+  const shows = allshows?.filter(
     (e) => e.theater?.province === detail?.province
   );
   // console.log(shows);
@@ -55,18 +54,21 @@ const HomeViewer = () => {
         {shows?.length > 0 ? (
           <CarouselContainer allshows={shows} />
         ) : (
-          <CarouselContainer allshows={filterShow} />
+          <CarouselContainer allshows={allshows} />
         )}
       </div>
       <div className={style.showsContainer}>
         {actualShow?.length ? (
           <Shows actualShow={actualShow} idV={decod} />
         ) : (
-          <p>...</p>
+          <div>
+          <img src='https://media.giphy.com/media/q15kbCtGFqwx8wYx1n/giphy.gif' alt='img'/>
+          <p>No hay espectáculos que coincidan</p>
+          </div>
         )}
       </div>
       <div className={style.paginate}>
-        <Paginate qty={qty} allshows={filterShow?.length} paginate={paginate} />
+        <Paginate qty={qty} allshows={allshows?.length} paginate={paginate} />
       </div>
     </div>
   );

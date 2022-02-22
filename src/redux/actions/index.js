@@ -17,7 +17,7 @@ export function filterPerProvince(payload) {
 
 export function postShow(newShow) {
   try {
-    const show = axios.post("https://back-pg.herokuapp.com/shows", newShow);
+    const show = axios.post("http://localhost:3001/shows", newShow);
     return {
       type: "POST_SHOW",
       payload: show,
@@ -30,7 +30,7 @@ export function postShow(newShow) {
 export function allShows() {
   return function (dispatch) {
     return axios
-      .get("https://back-pg.herokuapp.com/shows")
+      .get("http://localhost:3001/shows")
       .then((response) => response.data)
       .then((data) => {
         dispatch({ type: "GET_ALL_SHOWS", payload: data });
@@ -41,7 +41,7 @@ export function allShows() {
 export function theaterDetail(id) {
   return function (dispatch) {
     return axios
-      .get(`https://back-pg.herokuapp.com/theaters/${id}`)
+      .get(`http://localhost:3001/theaters/${id}`)
       .then((response) => response.data)
       .then((data) => {
         dispatch({ type: "THEATER_DETAIL", payload: data });
@@ -51,7 +51,7 @@ export function theaterDetail(id) {
 export function allTheaters() {
   return function (dispatch) {
     return axios
-      .get("https://back-pg.herokuapp.com/theaters")
+      .get("http://localhost:3001/theaters")
       .then((resp) => resp.data)
       .then((data) => {
         dispatch({
@@ -92,7 +92,7 @@ export function filterPerTicketsQty(payload) {
 
 export function postViewer(newviewer) {
   try {
-    const viewer = axios.post("https://back-pg.herokuapp.com/viewers", newviewer);
+    const viewer = axios.post("http://localhost:3001/viewers", newviewer);
     return {
       type: "POST_VIEWER",
       payload: viewer,
@@ -103,7 +103,7 @@ export const ORDER_SCORE = "ORDER_SCORE";
 
 export function postTicket(newticket) {
   try {
-    const tickets = axios.post("https://back-pg.herokuapp.com/tickets", newticket);
+    const tickets = axios.post("http://localhost:3001/tickets", newticket);
     return {
       type: "POST_TICKET",
       payload: tickets,
@@ -114,7 +114,7 @@ export function postTicket(newticket) {
 export function showDetail(id) {
   return function (dispatch) {
     return axios
-      .get(`https://back-pg.herokuapp.com/shows/${id}`)
+      .get(`http://localhost:3001/shows/${id}`)
       .then((response) => response.data)
       .then((data) => {
         dispatch({ type: "SHOW_DETAIL", payload: data });
@@ -125,7 +125,7 @@ export function showDetail(id) {
 export function getViewerDetail(id) {
   return function (dispatch) {
     return axios
-      .get(`https://back-pg.herokuapp.com/viewers/${id}`)
+      .get(`http://localhost:3001/viewers/${id}`)
       .then((response) => response.data)
       .then((data) => {
         dispatch({ type: GET_VIEWER_DETAIL, payload: data });
@@ -133,34 +133,11 @@ export function getViewerDetail(id) {
   };
 }
 
-//export function loginTheater ({ email, password }) {
-//    console.log(email)
-//    return fetch('https://back-pg.herokuapp.com/login/theater', {
-//      method: 'POST',
-//      headers: {
-//        "Content-Type": "application/json"
-//      },
-//      body: JSON.stringify({email, password})
-//
-//    }).then(res => {
-//      if (!res.ok) throw new Error('Response is NOT ok')
-//      return res.json()
-//    }).then(res => {
-//      const { jwt } = res
-//      return jwt
-//    })
-//  }
-
 export function loginTheater({ email, password }) {
   console.log(email);
   return (
     axios
-      .post("https://back-pg.herokuapp.com/login/theater", { email, password })
-
-      //.then(res => {
-      //  if (!res.ok) throw new Error('Response is NOT ok')
-      //  return res.json()
-      //})
+      .post("http://localhost:3001/login/theater", { email, password })
       .then((res) => {
         return res.data;
       })
@@ -171,7 +148,7 @@ export function loginTheater({ email, password }) {
 export function putViewer(id, changes) {
   return function (dispatch) {
     return axios
-      .put(`https://back-pg.herokuapp.com/viewers/${id}`, changes)
+      .put(`http://localhost:3001/viewers/${id}`, changes)
       .then((response) => response.data)
       .then((data) => {
         console.log(data);
@@ -183,7 +160,7 @@ export function putViewer(id, changes) {
 export function putTicket(id, nuevoticket) {
   return function (dispatch) {
     return axios
-      .put(`https://back-pg.herokuapp.com/tickets/${id}`, nuevoticket)
+      .put(`http://localhost:3001/tickets/${id}`, nuevoticket)
       .then((response) => response.data)
       .then((data) => {
         dispatch({ type: PUT_TICKET, payload: data });
@@ -191,10 +168,21 @@ export function putTicket(id, nuevoticket) {
   };
 }
 
+export function putShow(id, nuevoshow) {
+  return function (dispatch) {
+    return axios
+      .put(`http://localhost:3001/shows/${id}`, nuevoshow)
+      .then((response) => response.data)
+      .then((data) => {
+        dispatch({ type: PUT_SHOW, payload: data });
+      });
+  };
+}
+
 export function getAllViewers() {
   return function (dispatch) {
     return axios
-      .get("https://back-pg.herokuapp.com/viewers")
+      .get("http://localhost:3001/viewers")
       .then((response) => response.data)
       .then((data) => {
         dispatch({ type: GET_ALL_ViEWERS, payload: data });
@@ -205,7 +193,7 @@ export function getAllViewers() {
 export function deleteViewer(id) {
   return function (dispatch) {
     return axios
-      .delete(`https://back-pg.herokuapp.com/viewers/${id}`)
+      .delete(`http://localhost:3001/viewers/${id}`)
       .then((response) => response.data)
       .then((data) => {
         dispatch({ type: DELETE_VIEWER, payload: data });
@@ -216,7 +204,7 @@ export function deleteViewer(id) {
 export function deleteTheater(id) {
   return function (dispatch) {
     return axios
-      .delete(`https://back-pg.herokuapp.com/theaters/${id}`)
+      .delete(`http://localhost:3001/theaters/${id}`)
       .then((response) => response.data)
       .then((data) => {
         dispatch({ type: DELETE_THEATRER, payload: data });
@@ -224,33 +212,13 @@ export function deleteTheater(id) {
   };
 }
 
-//export function loginViewer ({ email, password }) {
-//    console.log(email)
-//    return fetch('https://back-pg.herokuapp.com/login/viewer', {
-//      method: 'POST',
-//      headers: {
-//        "Content-Type": "application/json"
-//      },
-//      body: JSON.stringify({email, password})
-//
-//    }).then(res => {
-//      if (!res.ok) throw new Error('Response is NOT ok')
-//      return res.json()
-//    }).then(res => {
-//      const { jwt } = res
-//      return jwt
-//    })
-//  }
 
 export function loginViewer({ email, password }) {
   console.log(email);
   return (
     axios
-      .post("https://back-pg.herokuapp.com/login/viewer", { email, password })
-      //.then(res => {
-      //  if (!res.ok) throw new Error('Response is NOT ok')
-      //  return res.json()
-      //})
+      .post("http://localhost:3001/login/viewer", { email, password })
+      
       .then((res) => {
         return res.data;
       })
@@ -261,7 +229,7 @@ export function loginViewer({ email, password }) {
 export function getShowByName(name) {
   return async function (dispatch) {
     try {
-      var resp = await axios.get(`https://back-pg.herokuapp.com/shows?name=${name}`);
+      var resp = await axios.get(`http://localhost:3001/shows?name=${name}`);
       return dispatch({
         type: GET_SHOW_BY_NAME,
         payload: resp.data,
@@ -276,25 +244,10 @@ export function getShowByName(name) {
   };
 }
 
-// export function editProfileT(payload) {
-//   return async function (dispatch) {
-//     try {
-//       const { data } = await axios.put(
-//         `https://back-pg.herokuapp.com/theaters/${payload.id}`,
-//         payload
-//       );
-//       alert(data);
-//       return dispatch({ type: PUT_PROFILE_THEATER });
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
-// }
-
 export function editProfileT(id, changes) {
   return function (dispatch) {
     return axios
-      .put(`https://back-pg.herokuapp.com/theaters/${id}`, changes)
+      .put(`http://localhost:3001/theaters/${id}`, changes)
       .then((response) => response.data)
       .then((data) => {
         console.log(data);
@@ -305,7 +258,7 @@ export function editProfileT(id, changes) {
 
 export function createTheater(values) {
   try {
-    const theater = axios.post("https://back-pg.herokuapp.com/theaters", values);
+    const theater = axios.post("http://localhost:3001/theaters", values);
     return {
       type: "CREATE_THEATER",
       payload: theater,
@@ -315,7 +268,7 @@ export function createTheater(values) {
 
 export function createFavorites(id, changes) {
   try {
-    const fav = axios.post(`https://back-pg.herokuapp.com/favorites/${id}`, changes);
+    const fav = axios.post(`http://localhost:3001/favorites/${id}`, changes);
     console.log(fav);
     return {
       type: CREATE_FAVORITES,
@@ -329,7 +282,7 @@ export function createFavorites(id, changes) {
 export function getAllTickets() {
   return function (dispatch) {
     return axios
-      .get("https://back-pg.herokuapp.com/tickets")
+      .get("http://localhost:3001/tickets")
       .then((res) => res.data)
       .then((data) => {
         dispatch({ type: GET_ALL_TICKETS, payload: data });
@@ -340,7 +293,7 @@ export function getAllTickets() {
 export function getAllReview() {
   return function (dispatch) {
     return axios
-      .get("https://back-pg.herokuapp.com/reviews")
+      .get("http://localhost:3001/reviews")
       .then((res) => res.data)
       .then((data) => {
         dispatch({ type: GET_ALL_REVIEW, payload: data });
@@ -358,7 +311,7 @@ export function postReview(
   nameViewer
 ) {
   try {
-    const postreview = axios.post("https://back-pg.herokuapp.com/reviews", {
+    const postreview = axios.post("http://localhost:3001/reviews", {
       theaterScore,
       showScore,
       review,
@@ -376,61 +329,10 @@ export function postReview(
   }
 }
 
-// export function checkoutPay(id) {
-// console.log(id)
-// // var script = document.createElement('script');
-// //         script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
-// //         // const attr_data_preference = document.createAttribute('data-preference-id') //Crea un nodo atribute
-// //         // attr_data_preference.value = id.id
-// //         // script.setAttributeNode(script);
-// //         script.type = "text/javascript";
-// //         script.dataset.preferenceId =  axios
-// //         .post ('https://back-pg.herokuapp.com/tickets/pay', {id}).preferenceId;
-// //         document.getElementById("button-checkout").innerHTML = "";
-// //         document.querySelector("#button-checkout").appendChild(script);
-// return (
-//     axios.post ('https://back-pg.herokuapp.com/tickets/pay', {id})
-//         .then((res) => {
-//             console.log(res.data)
-//             return res.data
-//         })
-//         .catch((e) => console.log(e))
-// )
-
-// return async function (dispatch) {
-//     try{
-//         const pay = await axios.post ('https://back-pg.herokuapp.com/tickets/pay', {id})
-
-//         var script = document.createElement('script');
-//         script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
-//         // const attr_data_preference = document.createAttribute('data-preference-id') //Crea un nodo atribute
-//       // attr_data_preference.value = id.id
-//         // script.setAttributeNode(script);
-//         script.type = "text/javascript";
-//         script.dataset.preferenceId = pay.preferenceId;
-//         document.getElementById("button-checkout").innerHTML = "";
-//         document.querySelector("#button-checkout").appendChild(script);
-//         // var key = pay.data
-//         // console.log(key)
-//         // window.location.href = 'https://sandbox.mercadopago.com.ar/checkout/v1/redirect?pref_id=672708410-642e44a0-3182-4983-b7d7-3e01eebce9e5'
-//         // console.log(window.location)
-//         dispatch({
-//             type: CHECKOUT_PAY,
-//             payload: pay.data,
-//             // key
-//         })
-//         // window.location = pay.data.redirect
-//     } catch(e) {
-//         console.log(e)
-//     }
-// }
-
-// }
-
 export function checkoutPay({ seatNumber, showId, idViewer }) {
   return function (dispatch) {
     axios
-      .post("https://back-pg.herokuapp.com/tickets/pay", {
+      .post("http://localhost:3001/tickets/pay", {
         seatNumber,
         showId,
         idViewer,
@@ -444,9 +346,19 @@ export function checkoutPay({ seatNumber, showId, idViewer }) {
   };
 }
 
+export function getTicketPay({ seatNumber, showId, idViewer, status }) {
+  return async function (dispatch) {
+    var resp = await axios.get(`http://localhost:3001/tickets/finish/${showId}/${idViewer}/${seatNumber}/${status}`)
+      return dispatch({
+        type: GET_TICKET_PAY,
+        payload: resp.data
+      })
+  }
+}
+
 export function postNewsletterShow(nameTheater) {
   try {
-    const postshow = axios.post("https://back-pg.herokuapp.com/newsletter", {
+    const postshow = axios.post("http://localhost:3001/newsletter", {
       nameTheater,
     });
 
@@ -461,7 +373,7 @@ export function postNewsletterShow(nameTheater) {
 
 export function postPasswordRecoveryViewer(email) {
   try {
-    const postEmail = axios.post("https://back-pg.herokuapp.com/resetPasswordViewer", {
+    const postEmail = axios.post("http://localhost:3001/resetPasswordViewer", {
       email,
     });
 
@@ -476,7 +388,7 @@ export function postPasswordRecoveryViewer(email) {
 
 export function postPasswordRecoveryTheater(email) {
   try {
-    const postEmail = axios.post("https://back-pg.herokuapp.com/resetPasswordTheater", {
+    const postEmail = axios.post("http://localhost:3001/resetPasswordTheater", {
       email,
     });
 
@@ -519,3 +431,5 @@ export const GET_ALL_REVIEW = "GET_ALL_REVIEW";
 export const POST_PASSWORD_RECOVERY_VIEWER = "POST_PASSWORD_RECOVERY_VIEWER";
 export const POST_PASSWORD_RECOVERY_THEATER = "POST_PASSWORD_RECOVERY_THEATER";
 export const DELETE_THEATRER = "DELETE_THEATRER";
+export const GET_TICKET_PAY = "GET_TICKET_PAY";
+export const PUT_SHOW = "PUT_SHOW";

@@ -143,7 +143,7 @@ const LogInTheatres = () => {
         {idT > 0 ? (
           <Redirect to={`/theaterHome/${btoa(idT)}`} />
         ) : (
-          <form>
+          <form className={style.googleContainer}>
             <GoogleLogin
               clientId="506901482868-h6pf1ffiuv7vicavl8btlunj18oeamjr.apps.googleusercontent.com"
               buttonText="Log in with Google"

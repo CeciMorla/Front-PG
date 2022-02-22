@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import style from "./ShowDetail.module.css";
 import Countdown from "react-countdown";
 import { Navbar, Container, Button } from "react-bootstrap";
-
+import {putShow} from "../../redux/actions/index.js";
 import { putTicket } from "../../redux/actions/index.js";
 
 const ShowDetail = () => {
@@ -21,7 +21,9 @@ const ShowDetail = () => {
   const [porcentaje, setPorcentaje] = useState(null);
   const [decodShowId, setDecodShowId] = useState("");
   const [decodViewerId, setDecodViewerId] = useState("");
-
+  const newrelased = {
+    released: true,
+  };
   useEffect(async () => {
     await setDecodShowId(atob(id));
     await setDecodViewerId(atob(idV));
@@ -32,13 +34,12 @@ const ShowDetail = () => {
       dispatch(showDetail(decodShowId));
     }
   }, [dispatch, decodShowId]);
-  console.log("decodShowId", decodShowId);
-  console.log(show);
+
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
-      <div>
+      return (<div>
         <p>La obra ya ha comenzado!</p>
-      </div>;
+      </div>);
     } else {
       return (
         <div className={style.timer}>
@@ -70,27 +71,34 @@ const ShowDetail = () => {
       dia: days,
       hora: hours,
     });
+    console.log(tiempo.dia);
     numerodeporcentaje();
   };
+  const handleComplete  = ()=>{
+    dispatch(putShow(decodShowId, newrelased));
+    
+  }
 
   function numerodeporcentaje() {
-    if (tiempo.dia === 0 && tiempo.hora < 6) {
+    if (tiempo.dia === 0 && tiempo.hora < 12) {
       setPorcentaje(10);
       porcentajefuncion(porcentaje);
-    } else if (tiempo.dia === 0 && tiempo.hora < 12) {
+    } else if (tiempo.dia === 0 && tiempo.hora > 12) {
       setPorcentaje(15);
       porcentajefuncion(porcentaje);
-    } else if (tiempo.dia === 0 && tiempo.hora > 12) {
+    } else if (tiempo.dia === 1 && tiempo.hora < 12) {
       setPorcentaje(20);
       porcentajefuncion(porcentaje);
     } else if (tiempo.dia === 1 && tiempo.hora > 12) {
       setPorcentaje(25);
       porcentajefuncion(porcentaje);
-    } else {
+    } else if (tiempo.dia >= 2 && tiempo.hora >= 0) {
       setPorcentaje(30);
       porcentajefuncion(porcentaje);
     }
   }
+
+  console.log(tiempo.dia, "dia");
 
   const onSubmit = () => {
     for (let i = 0; i < show?.tickets.length; i++) {
@@ -100,7 +108,6 @@ const ShowDetail = () => {
         price: preciofinal,
       };
       dispatch(putTicket(show?.tickets[i].id, tickets));
-      console.log(tickets, "tikeron");
     }
   };
 
@@ -140,17 +147,14 @@ const ShowDetail = () => {
             <img src={show?.image} className={style.image} alt="img" />
           </div>
           <div className={style.boxSummary}>
-            <h3>Descripcion</h3>
+            <h3>Descripción</h3>
             <p>{show?.summary}</p>
           </div>
         </div>
         {/* //-------------------Timer--------------- */}
         <div className={style.timerContainer}>
           <h2 className={style.highlight}>Este show comienza en</h2>
-          <Countdown date={dateTimer} renderer={renderer} onTick={onStart}>
-            <div>
-              <p>La obra ya ha comenzado!</p>
-            </div>
+          <Countdown date={dateTimer} renderer={renderer} onTick={onStart} onComplete={handleComplete}>
           </Countdown>
         </div>
         {/* //-------------------1row---------------- */}
@@ -158,15 +162,15 @@ const ShowDetail = () => {
         <div className={style.datos}>
           <div className={style.first}>
             <div className={style.box}>
-              <h3>Tipo de publico </h3>
+              <h3>Tipo de público </h3>
               <h4>{show?.rated} </h4>
             </div>
             <div className={style.box}>
-              <h3>Duracion </h3>
+              <h3>Duración </h3>
               <h4>{show?.length} </h4>
             </div>
             <div className={style.box}>
-              <h3>Genero </h3>
+              <h3>Género </h3>
               <h4>{show?.genre} </h4>
             </div>
           </div>

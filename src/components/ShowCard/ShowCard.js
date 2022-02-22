@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import style from "./ShowCard.module.css";
 import Countdown from "react-countdown";
 import { Card } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import {putShow} from "../../redux/actions/index.js";
 const ShowCard = ({
   id,
   name,
@@ -19,7 +21,14 @@ const ShowCard = ({
   idV,
 }) => {
   let timer = ` dias ${date} ${time}`;
-
+  const dispatch = useDispatch();
+  const newrelased = {
+    released: true,
+  };
+  const handleComplete  = ()=>{
+    dispatch(putShow(id, newrelased));
+    
+  }
   return (
     <div className={style.container}>
       {idV ? (
@@ -39,7 +48,7 @@ const ShowCard = ({
               <Card.Text>
                 <p className={style.subtitle}>{province}</p>
                 <p className={style.subtitle}>El espectaculo comienza en: </p>
-                <Countdown date={timer}>
+                <Countdown date={timer} onComplete={handleComplete}>
                   <div>
                     <p>La obra ya ha comenzado!</p>
                   </div>
@@ -63,7 +72,7 @@ const ShowCard = ({
                 <Card.Text>
                   <p className={style.subtitle}>{province}</p>
                   <p className={style.subtitle}>El espectaculo comienza en: </p>
-                  <Countdown date={timer}>
+                  <Countdown date={timer} onComplete={handleComplete}>
                     <div>
                       <p>La obra ya ha comenzado!</p>
                     </div>

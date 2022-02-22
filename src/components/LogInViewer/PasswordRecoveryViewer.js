@@ -2,36 +2,35 @@ import React, { useState, useEffect } from "react";
 import { postPasswordRecoveryViewer } from "../../redux/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllViewers } from "../../redux/actions/index.js";
-import style from "./LoginViewer.module.css";
+import style from "./PasswordRecoveryViewer.module.css";
 import { Navbar, Form, Container, Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+
 import swal from "sweetalert";
 
 const PasswordRecoveryViewer = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const viewers = useSelector((state) => state.viewers);
-  const [email, setEmail] = useState('');
+  const [input, setInput] = useState({ email: "" });
 
   useEffect(() => {
     dispatch(getAllViewers());
   }, [dispatch]);
 
   function inputChange(e) {
-    setEmail(
-      
-       e.target.value,
-    );
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    const filterViewer = viewers?.find((e) => e.email === email);
+    const filterViewer = viewers?.find((e) => e.email === input.email);
     if (filterViewer) {
-      postPasswordRecoveryViewer(email);
+      postPasswordRecoveryViewer(input.email);
       swal("Email enviado!", "", "success");
-      history.push('/');
-      setEmail("");
+      window.location.href = `http://localhost:3000`;
+      setInput("");
     } else {
       swal("", "Este email no esta registrado!", "error");
     }
@@ -51,22 +50,24 @@ const PasswordRecoveryViewer = () => {
           </Navbar.Brand>
         </Container>
       </Navbar>
-      <h2>Ingresa tu correo electronico</h2>
-      <div className={style.loginContainer}>
-        <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Control
-              type="text"
-              placeholder="Email..."
-              value={email}
-              name="email"
-              onChange={inputChange}
-            />
-          </Form.Group>
-          <Button variant="dark" type="submit" onClick={handleSubmit}>
-            Enviar
-          </Button>
-        </Form>
+      <div className={style.bodyContainer}>
+        <h2>Ingresa tu correo electrónico</h2>
+        <div className={style.loginContainer}>
+          <Form>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Control
+                type="text"
+                placeholder="Email..."
+                value={input.email}
+                name="email"
+                onChange={inputChange}
+              />
+            </Form.Group>
+            <Button variant="dark" type="submit" onClick={handleSubmit}>
+              Enviar
+            </Button>
+          </Form>
+        </div>
       </div>
     </div>
   );

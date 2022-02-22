@@ -1,4 +1,4 @@
-import React, { useRef,useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import {
   postShow,
@@ -37,12 +37,11 @@ const FormShow = () => {
   const fechadepasado = new String(
     `${minfechaaño}-${minfechames1}-${maxfechadia}`
   );
-  const [decod,setDecod] = useState('');
-  
-  useEffect(async ()=>{
-    await setDecod(atob(id))
-    
-  },[id])
+  const [decod, setDecod] = useState("");
+
+  useEffect(async () => {
+    await setDecod(atob(id));
+  }, [id]);
 
   useEffect(() => {
     dispatch(theaterDetail(decod));
@@ -64,6 +63,7 @@ const FormShow = () => {
       if (res) {
         const inputs = {
           ...input,
+          seatsAvailable: seatsavailable,
           theaterName: theater.name,
           name: data.name,
           summary: data.summary,
@@ -86,17 +86,17 @@ const FormShow = () => {
           console.log("ticket", tickets);
           postTicket(tickets);
         }
-        swal("Espectaculo agregado!", {
+        swal("Espectáculo agregado!", {
           icon: "success",
-          buttons: false
+          buttons: false,
         });
         postNewsletterShow(theater.name);
         history.push(`/theaterHome/${id}`);
       } else {
         swal({
-          title: 'Tranquilo!',
-          text:'Tomate tu tiempo',
-          buttons: false
+          title: "Tranquilo!",
+          text: "Tómate tu tiempo",
+          buttons: false,
         });
       }
     });
@@ -104,18 +104,18 @@ const FormShow = () => {
 
   return (
     <div className={style.formShowContainer}>
-      <NavBarTheater id={decod} img={theater?.image} />
+      <NavBarTheater id={decod} img={theater?.image} name={theater?.name} />
 
       <div className={style.formShowCreate}>
         <div className="text-center padding">
-          <h1>Agrega un Espectaculo</h1>
+          <h1>Agrega un Espectáculo</h1>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="row g-3">
           <div className="col-md-12">
             <label className="form-label">Nombre</label>
             <input
-              title="Nombre del Espectaculo"
+              title="Nombre del Espectáculo"
               type="text"
               name="name"
               placeholder="Nombre de la obra"
@@ -132,15 +132,15 @@ const FormShow = () => {
             </span>
           </div>
           <div className="col-md-12">
-            <label className="form-label">Descripcion</label>
+            <label className="form-label">Descripción</label>
             <textarea
-              title="Descripcion del espectaculo 1000 caracteres max"
+              title="Descripción del espectáculo 1000 caracteres max"
               type="text"
               name="summary"
               width="100"
               height="30"
               maxLength="1000"
-              placeholder="Descripcion de la Obra. Max 1000 caracteres."
+              placeholder="Descripción de la Obra. Máximo 1000 caracteres."
               className="form-control"
               {...register("summary", {
                 required: {
@@ -149,7 +149,7 @@ const FormShow = () => {
                 },
                 maxLength: {
                   value: 1000,
-                  message: "No se pueden mas de 1000 caracteres",
+                  message: "No se pueden más de 1000 caracteres",
                 },
               })}
             />
@@ -159,7 +159,7 @@ const FormShow = () => {
           </div>
 
           <div className="col-md-6">
-            <label className="form-label col-lg-12">Genero</label>
+            <label className="form-label col-lg-12">Género</label>
             <select
               defaultValue=""
               name="genre"
@@ -172,7 +172,7 @@ const FormShow = () => {
               })}
             >
               <option selected disabled="disabled" value="">
-                Selecciona un genero
+                Selecciona un género
               </option>
 
               <option>Comedia</option>
@@ -190,7 +190,7 @@ const FormShow = () => {
           </div>
 
           <div className="col-md-6">
-            <label className="form-label col-lg-12">Tipo de Publico</label>
+            <label className="form-label col-lg-12">Tipo de Público</label>
             <select
               defaultValue=""
               name="rated"
@@ -202,15 +202,13 @@ const FormShow = () => {
                 },
               })}
             >
-              
               <option selected disabled="disabled" value="">
-                Selecciona el Tipo de Publico
+                Seleccione el Tipo de Público
               </option>
               <option>Todas las edades</option>
               <option>Apta para mayores de 13 años</option>
               <option>Apta para mayores de 16 años</option>
               <option>Apta para mayores de 18 años</option>
-              <option>Exhibición condicionada</option>
             </select>
             <span className="text-danger text-small d-block mb-2">
               {errors.rated && errors.rated.message}
@@ -237,9 +235,9 @@ const FormShow = () => {
           </div>
 
           <div className="col-md-4">
-            <label className="form-label col-lg-12">Duracion</label>
+            <label className="form-label col-lg-12">Duración</label>
             <input
-              title="No se admiten numeros negativos ni decimales"
+              title="No se admiten números negativos ni decimales"
               type="number"
               name="length"
               placeholder="Minutos de la Obra"
@@ -251,7 +249,7 @@ const FormShow = () => {
                 },
                 pattern: {
                   value: /^(0|[1-9][0-9]*)$/,
-                  message: "No se pueden numero negativos ni decimales",
+                  message: "No se admiten números negativos ni decimales",
                 },
               })}
             />
@@ -263,7 +261,7 @@ const FormShow = () => {
           <div className="col-md-4">
             <label className="form-label col-lg-12">Fecha</label>
             <input
-              title="Solo se puden agregar espectaculos con un max de 48h del comienzo del espectaculo"
+              title="Solo se puden agregar espectáculos con un máximo de 48h del comienzo del espectáculo"
               type="date"
               name="date"
               min={fechadehoy}
@@ -327,28 +325,27 @@ const FormShow = () => {
                 setSeatAvailable={setSeatAvailable}
                 form={form}
                 {...register("seatsavailable", {
-                  validate: ()=> seatsavailable?.length !==0 || "Selecciona las butacas disponibles"
+                  validate: () =>
+                    seatsavailable?.length !== 0 ||
+                    "Seleccione las butacas disponibles",
                 })}
               ></SeatForm>
-              
             </div>
             <span className="text-danger text-small d-block mb-2">
               {errors.seatsavailable && errors.seatsavailable.message}
             </span>
             <small>
-              Selecciona los asientos disponibles para el espectaculo
+              Seleccione los asientos disponibles para el espectáculo
             </small>
           </div>
 
           <br />
-          
-          <div  className="col-md-12">
 
+          <div className="col-md-12">
             <button className="btn btn-dark" type="submit">
-              Agregar Espectaculo
+              Agregar Espectáculo
             </button>
           </div>
-          
         </form>
       </div>
     </div>

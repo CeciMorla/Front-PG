@@ -9,7 +9,6 @@ const Review = ({ nameTheater, nameShow, nameViewer, status }) => {
   let [theaterScore, setTheaterScore] = useState("");
   let [showScore, setShowScore] = useState("");
   let [review, setReview] = useState("");
-  let [button, setButton] = useState(true);
   const dispatch = useDispatch();
 
   function handleSubmit(e) {
@@ -26,18 +25,18 @@ const Review = ({ nameTheater, nameShow, nameViewer, status }) => {
         )
       );
       swal({
-        title:"Enviado! Muchas gracias!", 
+        title: "Enviado! Muchas gracias!",
         icon: "success",
-        button: false
+        button: false,
       });
       setTheaterScore("");
       setShowScore("");
       review("");
     } else {
       swal({
-        icon: 'error',
-        text: "Todavia no se puede valorar esta obra",  
-        button: false
+        icon: "error",
+        text: "Todavia no se puede valorar esta obra",
+        button: false,
       });
     }
   }
@@ -60,7 +59,7 @@ const Review = ({ nameTheater, nameShow, nameViewer, status }) => {
       <br></br>
       <form onSubmit={handleSubmit} className={style.formContainer}>
         <fieldset>
-          <legend>¿Como calificarias al teatro?</legend>
+          <legend>¿Cómo calificarías al teatro?</legend>
           <br></br>
           <label>
             <input
@@ -111,7 +110,7 @@ const Review = ({ nameTheater, nameShow, nameViewer, status }) => {
 
         <br></br>
         <fieldset>
-          <legend>¿Como calificarias la obra?</legend>
+          <legend>¿Cómo calificarías la obra?</legend>
           <br></br>
           <label>
             <input
@@ -161,14 +160,6 @@ const Review = ({ nameTheater, nameShow, nameViewer, status }) => {
         </fieldset>
 
         <br></br>
-        {/* <textarea
-          type="text"
-          name="review"
-          maxLength="1000"
-          placeholder="Dejanos tu comentario..."
-          value={review}
-          onChange={onChangeReview}
-        /> */}
         <div className={style.comentarioContainer}>
           <textarea
             className={style.comentario}
@@ -183,7 +174,9 @@ const Review = ({ nameTheater, nameShow, nameViewer, status }) => {
             onChange={onChangeReview}
           ></textarea>
         </div>
-        <Button type='onSubmit' variant="dark">Agrega tu opinion</Button>
+        <Button type="onSubmit" variant="dark">
+          Enviar
+        </Button>
       </form>
     </div>
   );

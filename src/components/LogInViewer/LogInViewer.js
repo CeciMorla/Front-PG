@@ -43,10 +43,7 @@ const LogInViewer = () => {
     dispatch(getAllViewers());
   }, [dispatch]);
 
-  const filterViewer = viewers?.find(
-    (e) => e.email === input.email && e.password === input.password
-  );
-  console.log(filterViewer);
+  //console.log(filterViewer);
 
   const handleFailure = (response) => {
     swal(response, "", "error");
@@ -75,18 +72,7 @@ const LogInViewer = () => {
     setInput({ email: "", password: "" });
   }
 
-  function handleChange(e) {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
-    setErrors(
-      validate({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
-    );
-  }
+  //const filterViewer = viewers?.find((e) => e.email === input.email && e.password === input.password);
 
   return (
     <div>
@@ -128,7 +114,7 @@ const LogInViewer = () => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   type="password"
-                  placeholder="password"
+                  placeholder="Password"
                   value={input.password}
                   name="password"
                   onChange={inputChange}
@@ -155,7 +141,7 @@ const LogInViewer = () => {
         {idV > 0 ? (
           <Redirect to={`/viewerHome/${btoa(idV)}`} />
         ) : (
-          <form>
+          <form className={style.googleContainer}>
             <GoogleLogin
               clientId="506901482868-h6pf1ffiuv7vicavl8btlunj18oeamjr.apps.googleusercontent.com"
               buttonText="Log in with Google"

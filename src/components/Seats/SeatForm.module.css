@@ -26,7 +26,7 @@
 }
 
 .seat {
-  background-color: #e310ff;
+  background-color: #ffffff;
   height: 12px;
   width: 15px;
   margin: 3px;
@@ -36,7 +36,7 @@
 }
 
 .seat.selected {
-  background-color: #6feaf6;
+  background-color: #e310ff;
 }
 
 .seat.occupied {

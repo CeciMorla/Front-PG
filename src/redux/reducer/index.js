@@ -23,6 +23,7 @@ import {
   GET_ALL_REVIEW,
   POST_PASSWORD_RECOVERY_VIEWER,
   POST_PASSWORD_RECOVERY_THEATER,
+  GET_TICKET_PAY,
 } from "../actions/index.js";
 
 const initialState = {
@@ -341,6 +342,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case GET_TICKET_PAY:
+      return {
+        ...state,
+        tickets: action.payload
+      }
     default:
       return state;
   }

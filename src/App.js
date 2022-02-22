@@ -33,6 +33,7 @@ import ResetPasswordTheater from "./components/LogInTheatres/ResetPasswordTheate
 import ShowDetailTheater from "./components/Shows/ShowDetailTheater";
 import Error404 from "./components/Error 404/Error404";
 import RedirectCheckout from "./components/RedirectCheckout/RedirectCheckout";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -66,9 +67,9 @@ function App() {
 
             <Route exact path="/formViewerRegister" component={FormViewers} />
             <Route exact path="/theaterRegister" component={FormTheater} />
-            <Route exact path='/seat' component={Seat}/>
-             <Route exact path='/pasarela/:id/:idV' component={PasarelaDePago}/>
-             <Route
+            <Route exact path="/seat" component={Seat} />
+            <Route exact path="/pasarela/:id/:idV" component={PasarelaDePago} />
+            <Route
               exact
               path="/editProfileTheater/:id"
               component={EditProfileTheater}
@@ -91,20 +92,16 @@ function App() {
               path="/viewerHome/:id"
               component={HomeViewer}
             /> */}
-            <Route exact path="/formPutViewer/:id" component={FormPutViewer}/>
-            <Route exact path='/showDetailHome/:idShow' component={ShowDetailHome} />
+            <Route exact path="/formPutViewer/:id" component={FormPutViewer} />
+            <Route
+              exact
+              path="/showDetailHome/:idShow"
+              component={ShowDetailHome}
+            />
             <Route exact path="/showDetail/:id/:idV" component={ShowDetail} />
-            <Route
-              exact
-              path="/newsletter/:id"
-              component={Newsletter}
-            />
+            <Route exact path="/newsletter/:id" component={Newsletter} />
             <Route exact path="/salesHistory/:id" component={SalesHistory} />
-            <Route
-              exact
-              path="/viewerHistory/:id"
-              component={ViewerHistory}
-            />
+            <Route exact path="/viewerHistory/:id" component={ViewerHistory} />
             <Route exact path="/privacyPolicy" component={PrivacyPolicy} />
             <Route
               exact
@@ -113,12 +110,21 @@ function App() {
             />
             {/* <Route exact path="/showDetail/checkout/:id" component={Checkout} /> */}
             <Route exact path="/pasarela/:id" component={PasarelaDePago} />
-            <Route exact path='/showDetailTheater/:id' component={ShowDetailTheater}/>
-            <Route exact path='/error404' component={Error404}/>
-            <Route exact path='/ticket/finish/:id/:idV/:seatNumber' component={RedirectCheckout} />
+            <Route
+              exact
+              path="/showDetailTheater/:id"
+              component={ShowDetailTheater}
+            />
+            <Route exact path="/error404" component={Error404} />
+            <Route
+              exact
+              path="/ticket/finish/:id/:idV/:seatNumber"
+              component={RedirectCheckout}
+            />
           </header>
         </div>
       </BrowserRouter>
+      <Footer />
     </UserContextProvider>
   );
 }
