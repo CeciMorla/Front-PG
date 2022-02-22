@@ -25,10 +25,14 @@ const MySeats = ({
   const [selected, setSelected] = useState([]);
   // const filas = new Array(values.row).fill(0).map((el, index)=> index)
   // const sillas = new Array(Math.ceil(values.seats/values.row)).fill(0).map((el, index)=> index)
-  console.log("available:", available);
+  // console.log("available:", available);
   const onClickSeat = (r, s) => {
     let silla = `${r}-${s}`;
     // console.log(`row: ${r}, seat: ${s}`)
+    if(seatsNumber < selected){
+      let ultimo = selected.pop()
+      setSelected(selected.filter(el => el===ultimo))
+    }
     if (!selected.includes(silla) && form) {
       setSelected([...selected, silla]);
       setSeatAvailable([...seatsavailable, silla]);
@@ -60,17 +64,24 @@ const MySeats = ({
     }
   };
   useEffect(() => {
-    if (showdetail.seatsAvailable && showdetail.seatsAvailable.length > 0) {
+    if(seatsNumber === 0){
+      setAvailable([...available, ...selected])
+      setSelected([])
+    }
+    if(selected.length>0 && seatsNumber> 0 && seatsNumber === selected.length-1){
+      const filtrado = selected.filter(el => el !== selected[selected.length-1])
+      setAvailable([...available, ...selected.filter(el => el === selected[selected.length-1])])
+      setSelected(filtrado)
+    }
+      if (showdetail.seatsAvailable && showdetail.seatsAvailable.length > 0) {
       console.log("showdetail.seatsAvailable", showdetail.seatsAvailable);
       let array = showdetail.seatsAvailable;
       window.localStorage.setItem("show", JSON.stringify(array));
     } else if (!showdetail.seatsAvailable) {
       console.log("else: ", JSON.parse(window.localStorage.getItem("show")));
     }
-  }, [showdetail.seatsAvailable]);
+  }, [ showdetail.seatsAvailable, seatsNumber]);
 
-  console.log(selected);
-  console.log(setSelected);
   return (
     <div className={style.seatContainer}>
       <div className={style.component}>

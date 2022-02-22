@@ -4,16 +4,17 @@ import { loginTheater, loginViewer } from "../redux/actions/index.js";
 
 
 const useUser = () => {
-  const { status, setStatus,loginData,setLoginData,id,setId,error,setError} = useContext(Context);
+  const { status, setStatus,loginData,setLoginData,id,setId,img,setImg} = useContext(Context);
   const [state, setState] = useState({ loading: false, error: false });
   const [stateG, setStateG] = useState(false);
   const [idV,setIdV] = useState('');
   const [idT,setIdT] = useState('');
   const [statusIdV,setStatusIdV] = useState('');
   const [statusIdT,setStatusIdT] = useState('');
-  const [errorG,setErrorG] = useState('');
-  
-
+  const [imgV,setImgV] = useState('');
+  const [imgT,setImgT] = useState('');
+  console.log(imgT)
+  console.log(statusIdT)
   const login = useCallback(
     (input) => {
       setState({ loading: true, error: false });
@@ -22,18 +23,19 @@ const useUser = () => {
           if(data.error){
             setState(true);
           }else{
-            window.sessionStorage.setItem("status", data.isLogged);
+          window.sessionStorage.setItem("status", data.isLogged);
           window.sessionStorage.setItem("id", data.id);
-          
-          
+          window.sessionStorage.setItem("img", data.img);
           setStatus(data.isLogged);
           setStatusIdT(window.sessionStorage.getItem('id').valueOf())
+          setImgT(window.sessionStorage.getItem('img').valueOf())
           }
           
         })
         .catch((err) => {
           window.sessionStorage.removeItem("status");
           window.sessionStorage.removeItem("id");
+          window.sessionStorage.removeItem("img");
           
           setState({ loading: false, error: true });
           console.error(err);
@@ -51,11 +53,12 @@ const useUser = () => {
             setState(true);
           }else{
             
-            window.sessionStorage.setItem("status", data.isLogged);
+          window.sessionStorage.setItem("status", data.isLogged);
           window.sessionStorage.setItem("id", data.id);
-          
+          window.sessionStorage.setItem("img", data.img);
           setStatus(data.isLogged);
           setStatusIdV(window.sessionStorage.getItem('id').valueOf())
+          setImgV(window.sessionStorage.getItem('img').valueOf())
           }
           
           
@@ -63,6 +66,7 @@ const useUser = () => {
         .catch((err) => {
           window.sessionStorage.removeItem("status");
           window.sessionStorage.removeItem("id");
+          window.sessionStorage.removeItem("img");
           setState({ loading: false, error: true });
           console.error(err);
         });
@@ -133,12 +137,15 @@ const useUser = () => {
     window.sessionStorage.removeItem("status");
     window.sessionStorage.removeItem("loginData");
     window.sessionStorage.removeItem("id");
+    window.sessionStorage.removeItem("img");
     
     setStatusIdV(null);
     setStatus(null);
     setLoginData(null);
     setId(null);
-    window.location.href="https://front-pg.vercel.app/"
+    setImgT(null);
+    setImgV(null);
+    window.location.href="https://front-pg.vercel.app"
   }, [setStatus,setLoginData,setId])
 
   return {
@@ -154,7 +161,9 @@ const useUser = () => {
     idV,
     idT,
     statusIdV,
-    statusIdT
+    statusIdT,
+    imgV,
+    imgT,
     
     
     

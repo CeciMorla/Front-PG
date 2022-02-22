@@ -28,14 +28,7 @@ const LogInTheatres = () => {
   const dispatch = useDispatch();
   const [input, setInput] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
-  const {
-    hasLoginError,
-    hasLoginErrorG,
-    login,
-    googleLoginTheater,
-    idT,
-    statusIdT,
-  } = useUser();
+  const {hasLoginError,hasLoginErrorG,login,googleLoginTheater,idT,statusIdT,imgT} = useUser();
   const theaters = useSelector((state) => state.theaters);
   //const [idT,setIdT] = useState('')
 
@@ -48,6 +41,7 @@ const LogInTheatres = () => {
   );
   console.log(filterTheater);
   console.log("idT", idT);
+  console.log('imgT',imgT)
   const handleFailure = (response) => {
     swal({
       tittle: response,

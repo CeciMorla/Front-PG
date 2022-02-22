@@ -18,7 +18,7 @@ const Newsletter = () => {
     nameTheater: "",
   });
   const [decod, setDecod] = useState("");
-
+  let img = window.sessionStorage.getItem('img').valueOf();
   useEffect(async () => {
     await setDecod(atob(id));
     console.log("decod", decod);
@@ -63,7 +63,7 @@ const Newsletter = () => {
   return (
     <div>
       <div className={style.navContainer}>
-        <NavBarPerfilViewer img={detail?.image} name={detail?.name} />
+        <NavBarPerfilViewer img={img} name={detail?.name} />
       </div>
       <div className={style.newsletter}>
         <h2 className={style.title}>

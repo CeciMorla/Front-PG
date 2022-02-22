@@ -21,7 +21,7 @@ const ViewerHistory = () => {
   const [button, setButton] = useState(true);
   const { id } = useParams();
   const [decod, setDecod] = useState("");
-
+  let img = window.sessionStorage.getItem('img').valueOf();
   let showID;
   let theaterID;
 
@@ -80,7 +80,7 @@ const ViewerHistory = () => {
   return (
     <div>
       <div className={style.navContainer}>
-        <NavBarPerfilViewer img={viewer?.image} name={viewer?.name} />
+        <NavBarPerfilViewer img={img} name={viewer?.name} />
       </div>
       <h2>Opiniones</h2>
 
@@ -127,8 +127,8 @@ const ViewerHistory = () => {
           })
         ) : (
           <div>
-          <img src='https://media.giphy.com/media/q15kbCtGFqwx8wYx1n/giphy.gif' alt='img'/>
-          <p>No hay shows para mostrar</p>
+          {/*<img src='https://media.giphy.com/media/q15kbCtGFqwx8wYx1n/giphy.gif' alt='img'/>*/}
+          <p>NO HAY SHOWS PARA MOSTRAR</p>
           </div>
         )}
       </div>

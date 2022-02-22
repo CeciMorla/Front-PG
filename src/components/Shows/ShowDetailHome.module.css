@@ -84,6 +84,14 @@ h3 {
   display: flex;
   gap: 0.3rem;
 }
+.timercont{
+  display: flex;
+  flex-direction: column;
+  margin: 0.3rem; 
+  padding: 0.3rem;
+  content: 10px;
+  
+}
 
 .btn {
   margin-top: 2rem;
@@ -105,7 +113,7 @@ h3 {
   }
 
   h3 {
-    font-size: 0.7rem;
+    font-size: 1rem;
   }
   .first {
     display: flex;

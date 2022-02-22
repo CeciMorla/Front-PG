@@ -43,25 +43,22 @@ const ShowDetail = () => {
     } else {
       return (
         <div className={style.timer}>
+          <div className={style.timercont}>
           <h3>{days}</h3>
-          <h3>
-            <small> Dias</small>
-          </h3>
-          <span>:</span>
+          <span className="text-muted"> Dias    </span>
+          </div>
+          <div className={style.timercont}>
           <h3>{hours} </h3>
-          <h3>
-            <small> Horas</small>
-          </h3>
-          <span>:</span>
+          <span className="text-muted"> Horas   </span>
+          </div>
+          <div className={style.timercont}>
           <h3>{minutes}</h3>
-          <h3>
-            <small> Minutos</small>
-          </h3>
-          <span>:</span>
+          <span className="text-muted"> Minutos </span>
+          </div>
+          <div className={style.timercont}>
           <h3>{seconds}</h3>
-          <h3>
-            <small> Segundos</small>
-          </h3>
+          <span className="text-muted">Segundos</span>
+          </div>
         </div>
       );
     }
@@ -195,7 +192,7 @@ const ShowDetail = () => {
           <div className={style.first}>
             <div className={style.box}>
               <h3>Entradas disponibles</h3>
-              <h4>{show?.ticketsQty} </h4>
+              <h4>{show?.seatsAvailable?.length} </h4>
             </div>
             <div className={style.box}>
               <h3>Fecha</h3>

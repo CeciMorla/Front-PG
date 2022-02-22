@@ -33,7 +33,7 @@ export default function Home() {
         <NavBarAll setActualPage={setActualPage} setOrder={setOrder} />
       </div>
       {filterShow?.length === 0 ? (
-        <img src='https://media.giphy.com/media/q15kbCtGFqwx8wYx1n/giphy.gif' alt='img'/>
+        <p></p>
       ) : (
         <div className={style.carouselContainer}>
           <CarouselContainer allshows={filterShow} />

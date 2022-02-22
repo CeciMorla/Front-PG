@@ -25,7 +25,7 @@ const HomeViewer = () => {
     setActualPage(number);
   };
   const [decod, setDecod] = useState("");
-
+  let img = window.sessionStorage.getItem('img').valueOf();
   useEffect(async () => {
     await setDecod(atob(id));
   }, [id]);
@@ -46,15 +46,15 @@ const HomeViewer = () => {
         <NavBarViewer
           setActualPage={setActualPage}
           setOrder={setOrder}
-          img={detail?.image}
+          img={img}
           name={detail?.name}
         />
       </div>
       <div className={style.carouselContainer}>
         {shows?.length > 0 ? (
-          <CarouselContainer allshows={shows} />
+          <CarouselContainer allshows={shows} decod={decod}/>
         ) : (
-          <CarouselContainer allshows={allshows} />
+          <CarouselContainer allshows={allshows} decod={decod}/>
         )}
       </div>
       <div className={style.showsContainer}>

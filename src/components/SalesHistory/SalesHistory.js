@@ -16,7 +16,7 @@ const SalesHistory = () => {
   const theater = useSelector((state) => state.theatersDetail);
   const { id } = useParams();
   const [decod, setDecod] = useState("");
-
+  let img = window.sessionStorage.getItem('img').valueOf();
   useEffect(async () => {
     await setDecod(atob(id));
     console.log("decod", decod);
@@ -31,15 +31,23 @@ const SalesHistory = () => {
   let filterShows = show?.filter(
     (e) => e.theaterId === theater?.id 
   );
-
+  
+  let total = filterShows?.map(e => e.total)
+  console.log('total', total)
+  let finalTotal = 0;
+  if(total?.length > 0){
+    finalTotal = total?.reduce(function (a, b) {return a + b;})
+  }
   console.log("filter", filterShows);
 
-  let total;
-  console.log("total", total);
+  
   return (
     <div>
-      <NavBarTheater id={decod} img={theater?.image} name={theater?.name} />
+      <NavBarTheater id={decod} img={img} name={theater?.name} />
       <div className={style.cardContainer}>
+        <div>
+          <h1>Venta total al día de hoy: ${finalTotal} </h1>
+        </div>
         {filterShows.length ? (
           filterShows?.map((e, i) => {
             return (
@@ -66,7 +74,7 @@ const SalesHistory = () => {
         ) : (
           <div>
           <img src='https://media.giphy.com/media/q15kbCtGFqwx8wYx1n/giphy.gif' alt='img'/>
-          <p>No hay ventas para mostrar</p>
+          {/*<p>NO HAY VENTAS PARA MOSTRAR</p>*/}
           </div>
         )}
       </div>

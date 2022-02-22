@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getTicketPay, showDetail } from "../../redux/actions";
 import NavBarPerfilViewer from "../NavBar/NavBarPerfilViewer";
 import codigo from "../../assets/codigoQr.jpg";
@@ -11,18 +11,29 @@ export default function RedirectCheckout() {
   const dispatch = useDispatch();
   const [decodId,setDecodId] = useState();
   const [decodIdV,setDecodIdV] = useState();
-
+  const queryParams = window.location.search;
+  const statusQuery = new URLSearchParams(queryParams)
+  const status = statusQuery.get('status')
+  // console.log(status)
+  const decodIdN = Number(decodId)
+  const decodIdVn = Number(decodIdV)
   useEffect(async () => {
     await setDecodId(atob(id));
     await setDecodIdV(atob(idV));
   }, [id,idV]);
   
   useEffect(() => {
-    if(Number(decodId)){
-      dispatch(showDetail(Number(decodId)));
+    if(decodIdN > 0){
+      dispatch(showDetail(decodIdN));
     }
-    
-  }, [dispatch, decodId]);
+    }, [dispatch, decodId]);
+
+    useEffect(()=>{
+      if(decodIdN > 0 && decodIdVn > 0){
+      
+        dispatch(getTicketPay({ seatNumber, decodIdN, decodIdVn, status }));
+      }
+    })
 
   const viewers = useSelector((state) => state.viewers);
   const findViewer = viewers?.find((v) => v.id === Number(decodIdV));
@@ -62,14 +73,6 @@ export default function RedirectCheckout() {
             <img className={style.codigoQr} src={codigo} alt="cogido" />
           </div>
         </div>
-        <div className={style.btnContainer}>
-          <Link to={`/viewerHome/${idV}`}>
-            <button type="button" className="btn btn-dark">
-              Volver
-            </button>
-          </Link>
-        </div>
-
         <form>
           <div className={style.btnContainer}>
             <button

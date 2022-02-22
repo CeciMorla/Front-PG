@@ -38,7 +38,7 @@ const FormShow = () => {
     `${minfechaaño}-${minfechames1}-${maxfechadia}`
   );
   const [decod, setDecod] = useState("");
-
+  let img = window.sessionStorage.getItem('img').valueOf();
   useEffect(async () => {
     await setDecod(atob(id));
   }, [id]);
@@ -104,7 +104,7 @@ const FormShow = () => {
 
   return (
     <div className={style.formShowContainer}>
-      <NavBarTheater id={decod} img={theater?.image} name={theater?.name} />
+      <NavBarTheater id={decod} img={img} name={theater?.name} />
 
       <div className={style.formShowCreate}>
         <div className="text-center padding">

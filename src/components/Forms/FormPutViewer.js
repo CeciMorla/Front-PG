@@ -24,7 +24,7 @@ const FormPutViewer = () => {
     formState: { errors },
   } = useForm();
   const [decod, setDecod] = useState("");
-
+  let img = window.sessionStorage.getItem('img').valueOf();
   useEffect(async () => {
     await setDecod(atob(id));
     console.log("decod", decod);
@@ -95,7 +95,7 @@ const FormPutViewer = () => {
     <div className={style.formViewerContainer}>
       <div className={style.nav}>
         <NavBarPerfilViewer
-          img={detail?.image}
+          img={img}
           id={decod}
           name={detail?.name}
         />
@@ -111,7 +111,7 @@ const FormPutViewer = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="row g-3">
           <div className="col-md-6">
             <img
-              src={detail.image}
+              src={detail?.image}
               alt="imagen de perfil"
               className={style.imagen}
             />

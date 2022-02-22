@@ -10,11 +10,9 @@ const PasarelaDePago = ({ props }) => {
   const [seatNumber, setSeatNumber] = useState(0);
   const show = useSelector((state) => state.showdetail.tickets);
   const sillas = useSelector((state) => state.showdetail.seatsAvailable);
-  console.log(show);
   // const jaja = show[0]
   // console.log(jaja)
   const hola = show?.map((t) => t.price);
-  console.log(hola);
 
   const dispatch = useDispatch();
   const { id, idV } = useParams();
@@ -59,10 +57,11 @@ const PasarelaDePago = ({ props }) => {
           <label>{seatNumber}</label>
           <div
             className={`${style.operation} ${style.sum}`}
-            onClick={
-              sillas && seatNumber < sillas.length
+            onClick={sillas && seatNumber < sillas.length
                 ? () => setSeatNumber(seatNumber + 1)
-                : null
+                : seatNumber < JSON.parse(window.localStorage.getItem("show")).length?
+                  () => setSeatNumber(seatNumber + 1)
+                :() => setSeatNumber(sillas? sillas.length: JSON.parse(window.localStorage.getItem("show")).length)
             }
           />
         </div>

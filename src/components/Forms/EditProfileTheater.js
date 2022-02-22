@@ -28,6 +28,7 @@ const EditProfileTheater = () => {
   };
 
   const [decod, setDecod] = useState("");
+  let img = window.sessionStorage.getItem('img').valueOf();
 
   useEffect(async () => {
     await setDecod(atob(id));
@@ -83,7 +84,7 @@ const EditProfileTheater = () => {
   }
   return (
     <div>
-      <NavBarTheater img={detail?.image} id={decod} name={detail?.name} />
+      <NavBarTheater img={img} id={decod} name={detail?.name} />
       <div className={style.formTheaterContainer}>
         <div>
           <button
