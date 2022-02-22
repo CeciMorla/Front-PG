@@ -121,7 +121,7 @@ export default function Checkout({
   }
 
   let dateTimer = `${show?.date} ${show?.time}`;
-
+  let total = preciofinal * seatNumber?.length;
   return (
     <div>
       <div className={style.inputContainer}>
@@ -135,7 +135,7 @@ export default function Checkout({
       <div className={style.inputContainer}>
         <label>Total</label>
         {/* <input disabled value={preciofinal * seatNumber.length}></input> */}
-        <h3>${preciofinal * seatNumber?.length}</h3>
+        <h3>${total}</h3>
       </div>
       <div>
         <button className="btn btn-dark" onClick={(e) => buttonMp(e)}>
