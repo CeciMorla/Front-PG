@@ -71,7 +71,7 @@ const useUser = () => {
 
   const googleLoginViewer = async (googleData) => {
     try {
-      const res = await fetch('http://localhost:3001/login/google/viewer', {
+      const res = await fetch('https://back-pg.herokuapp.com/login/google/viewer', {
       method: 'POST',
       body: JSON.stringify({
         token: googleData.tokenId,
@@ -104,7 +104,7 @@ const useUser = () => {
   };
   
   const googleLoginTheater = async (googleData) => {
-    const res = await fetch('http://localhost:3001/login/google/theater', {
+    const res = await fetch('https://back-pg.herokuapp.com/login/google/theater', {
       method: 'POST',
       body: JSON.stringify({
         token: googleData.tokenId,
@@ -138,7 +138,7 @@ const useUser = () => {
     setStatus(null);
     setLoginData(null);
     setId(null);
-    window.location.href="http://localhost:3000/"
+    window.location.href="https://front-pg.vercel.app/"
   }, [setStatus,setLoginData,setId])
 
   return {

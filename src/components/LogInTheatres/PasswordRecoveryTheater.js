@@ -5,31 +5,32 @@ import { allTheaters } from "../../redux/actions/index.js";
 import { Navbar, Form, Container, Button } from "react-bootstrap";
 import style from "./PasswordRecoveryTheater.module.css";
 import swal from "sweetalert";
+import { useHistory } from "react-router-dom";
 
 const PasswordRecoveryTheater = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const theaters = useSelector((state) => state.theaters);
-  const [input, setInput] = useState({ email: "" });
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
     dispatch(allTheaters());
   }, [dispatch]);
 
   function inputChange(e) {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
+    setEmail(
+       e.target.value,
+    );
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    const filterTheater = theaters?.find((e) => e.email === input.email);
+    const filterTheater = theaters?.find((e) => e.email === email);
     if (filterTheater) {
-      postPasswordRecoveryTheater(input.email);
+      postPasswordRecoveryTheater(email);
       swal("Email enviado!", "", "success");
-      window.location.href = `http://localhost:3000`;
-      setInput("");
+      history.push('/')
+      setEmail("");
     } else {
       swal("", "Este email no esta registrado!", "error");
     }
@@ -57,7 +58,7 @@ const PasswordRecoveryTheater = () => {
               <Form.Control
                 type="text"
                 placeholder="Email..."
-                value={input.email}
+                value={email}
                 name="email"
                 onChange={inputChange}
               />

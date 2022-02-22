@@ -17,7 +17,7 @@ export function filterPerProvince(payload) {
 
 export function postShow(newShow) {
   try {
-    const show = axios.post("http://localhost:3001/shows", newShow);
+    const show = axios.post("https://back-pg.herokuapp.com/shows", newShow);
     return {
       type: "POST_SHOW",
       payload: show,
@@ -30,7 +30,7 @@ export function postShow(newShow) {
 export function allShows() {
   return function (dispatch) {
     return axios
-      .get("http://localhost:3001/shows")
+      .get("https://back-pg.herokuapp.com/shows")
       .then((response) => response.data)
       .then((data) => {
         dispatch({ type: "GET_ALL_SHOWS", payload: data });
@@ -41,7 +41,7 @@ export function allShows() {
 export function theaterDetail(id) {
   return function (dispatch) {
     return axios
-      .get(`http://localhost:3001/theaters/${id}`)
+      .get(`https://back-pg.herokuapp.com/theaters/${id}`)
       .then((response) => response.data)
       .then((data) => {
         dispatch({ type: "THEATER_DETAIL", payload: data });
@@ -51,7 +51,7 @@ export function theaterDetail(id) {
 export function allTheaters() {
   return function (dispatch) {
     return axios
-      .get("http://localhost:3001/theaters")
+      .get("https://back-pg.herokuapp.com/theaters")
       .then((resp) => resp.data)
       .then((data) => {
         dispatch({
@@ -92,7 +92,7 @@ export function filterPerTicketsQty(payload) {
 
 export function postViewer(newviewer) {
   try {
-    const viewer = axios.post("http://localhost:3001/viewers", newviewer);
+    const viewer = axios.post("https://back-pg.herokuapp.com/viewers", newviewer);
     return {
       type: "POST_VIEWER",
       payload: viewer,
@@ -103,7 +103,7 @@ export const ORDER_SCORE = "ORDER_SCORE";
 
 export function postTicket(newticket) {
   try {
-    const tickets = axios.post("http://localhost:3001/tickets", newticket);
+    const tickets = axios.post("https://back-pg.herokuapp.com/tickets", newticket);
     return {
       type: "POST_TICKET",
       payload: tickets,
@@ -114,7 +114,7 @@ export function postTicket(newticket) {
 export function showDetail(id) {
   return function (dispatch) {
     return axios
-      .get(`http://localhost:3001/shows/${id}`)
+      .get(`https://back-pg.herokuapp.com/shows/${id}`)
       .then((response) => response.data)
       .then((data) => {
         dispatch({ type: "SHOW_DETAIL", payload: data });
@@ -125,7 +125,7 @@ export function showDetail(id) {
 export function getViewerDetail(id) {
   return function (dispatch) {
     return axios
-      .get(`http://localhost:3001/viewers/${id}`)
+      .get(`https://back-pg.herokuapp.com/viewers/${id}`)
       .then((response) => response.data)
       .then((data) => {
         dispatch({ type: GET_VIEWER_DETAIL, payload: data });
@@ -137,7 +137,7 @@ export function loginTheater({ email, password }) {
   console.log(email);
   return (
     axios
-      .post("http://localhost:3001/login/theater", { email, password })
+      .post("https://back-pg.herokuapp.com/login/theater", { email, password })
       .then((res) => {
         return res.data;
       })
@@ -148,7 +148,7 @@ export function loginTheater({ email, password }) {
 export function putViewer(id, changes) {
   return function (dispatch) {
     return axios
-      .put(`http://localhost:3001/viewers/${id}`, changes)
+      .put(`https://back-pg.herokuapp.com/viewers/${id}`, changes)
       .then((response) => response.data)
       .then((data) => {
         console.log(data);
@@ -160,7 +160,7 @@ export function putViewer(id, changes) {
 export function putTicket(id, nuevoticket) {
   return function (dispatch) {
     return axios
-      .put(`http://localhost:3001/tickets/${id}`, nuevoticket)
+      .put(`https://back-pg.herokuapp.com/tickets/${id}`, nuevoticket)
       .then((response) => response.data)
       .then((data) => {
         dispatch({ type: PUT_TICKET, payload: data });
@@ -171,7 +171,7 @@ export function putTicket(id, nuevoticket) {
 export function putShow(id, nuevoshow) {
   return function (dispatch) {
     return axios
-      .put(`http://localhost:3001/shows/${id}`, nuevoshow)
+      .put(`https://back-pg.herokuapp.com/shows/${id}`, nuevoshow)
       .then((response) => response.data)
       .then((data) => {
         dispatch({ type: PUT_SHOW, payload: data });
@@ -182,7 +182,7 @@ export function putShow(id, nuevoshow) {
 export function getAllViewers() {
   return function (dispatch) {
     return axios
-      .get("http://localhost:3001/viewers")
+      .get("https://back-pg.herokuapp.com/viewers")
       .then((response) => response.data)
       .then((data) => {
         dispatch({ type: GET_ALL_ViEWERS, payload: data });
@@ -193,7 +193,7 @@ export function getAllViewers() {
 export function deleteViewer(id) {
   return function (dispatch) {
     return axios
-      .delete(`http://localhost:3001/viewers/${id}`)
+      .delete(`https://back-pg.herokuapp.com/viewers/${id}`)
       .then((response) => response.data)
       .then((data) => {
         dispatch({ type: DELETE_VIEWER, payload: data });
@@ -204,7 +204,7 @@ export function deleteViewer(id) {
 export function deleteTheater(id) {
   return function (dispatch) {
     return axios
-      .delete(`http://localhost:3001/theaters/${id}`)
+      .delete(`https://back-pg.herokuapp.com/theaters/${id}`)
       .then((response) => response.data)
       .then((data) => {
         dispatch({ type: DELETE_THEATRER, payload: data });
@@ -217,7 +217,7 @@ export function loginViewer({ email, password }) {
   console.log(email);
   return (
     axios
-      .post("http://localhost:3001/login/viewer", { email, password })
+      .post("https://back-pg.herokuapp.com/login/viewer", { email, password })
       
       .then((res) => {
         return res.data;
@@ -229,7 +229,7 @@ export function loginViewer({ email, password }) {
 export function getShowByName(name) {
   return async function (dispatch) {
     try {
-      var resp = await axios.get(`http://localhost:3001/shows?name=${name}`);
+      var resp = await axios.get(`https://back-pg.herokuapp.com/shows?name=${name}`);
       return dispatch({
         type: GET_SHOW_BY_NAME,
         payload: resp.data,
@@ -247,7 +247,7 @@ export function getShowByName(name) {
 export function editProfileT(id, changes) {
   return function (dispatch) {
     return axios
-      .put(`http://localhost:3001/theaters/${id}`, changes)
+      .put(`https://back-pg.herokuapp.com/theaters/${id}`, changes)
       .then((response) => response.data)
       .then((data) => {
         console.log(data);
@@ -258,7 +258,7 @@ export function editProfileT(id, changes) {
 
 export function createTheater(values) {
   try {
-    const theater = axios.post("http://localhost:3001/theaters", values);
+    const theater = axios.post("https://back-pg.herokuapp.com/theaters", values);
     return {
       type: "CREATE_THEATER",
       payload: theater,
@@ -268,7 +268,7 @@ export function createTheater(values) {
 
 export function createFavorites(id, changes) {
   try {
-    const fav = axios.post(`http://localhost:3001/favorites/${id}`, changes);
+    const fav = axios.post(`https://back-pg.herokuapp.com/favorites/${id}`, changes);
     console.log(fav);
     return {
       type: CREATE_FAVORITES,
@@ -282,7 +282,7 @@ export function createFavorites(id, changes) {
 export function getAllTickets() {
   return function (dispatch) {
     return axios
-      .get("http://localhost:3001/tickets")
+      .get("https://back-pg.herokuapp.com/tickets")
       .then((res) => res.data)
       .then((data) => {
         dispatch({ type: GET_ALL_TICKETS, payload: data });
@@ -293,7 +293,7 @@ export function getAllTickets() {
 export function getAllReview() {
   return function (dispatch) {
     return axios
-      .get("http://localhost:3001/reviews")
+      .get("https://back-pg.herokuapp.com/reviews")
       .then((res) => res.data)
       .then((data) => {
         dispatch({ type: GET_ALL_REVIEW, payload: data });
@@ -311,7 +311,7 @@ export function postReview(
   nameViewer
 ) {
   try {
-    const postreview = axios.post("http://localhost:3001/reviews", {
+    const postreview = axios.post("https://back-pg.herokuapp.com/reviews", {
       theaterScore,
       showScore,
       review,
@@ -332,7 +332,7 @@ export function postReview(
 export function checkoutPay({ seatNumber, showId, idViewer }) {
   return function (dispatch) {
     axios
-      .post("http://localhost:3001/tickets/pay", {
+      .post("https://back-pg.herokuapp.com/tickets/pay", {
         seatNumber,
         showId,
         idViewer,
@@ -348,7 +348,7 @@ export function checkoutPay({ seatNumber, showId, idViewer }) {
 
 export function getTicketPay({ seatNumber, showId, idViewer, status }) {
   return async function (dispatch) {
-    var resp = await axios.get(`http://localhost:3001/tickets/finish/${showId}/${idViewer}/${seatNumber}/${status}`)
+    var resp = await axios.get(`https://back-pg.herokuapp.com/tickets/finish/${showId}/${idViewer}/${seatNumber}/${status}`)
       return dispatch({
         type: GET_TICKET_PAY,
         payload: resp.data
@@ -358,7 +358,7 @@ export function getTicketPay({ seatNumber, showId, idViewer, status }) {
 
 export function postNewsletterShow(nameTheater) {
   try {
-    const postshow = axios.post("http://localhost:3001/newsletter", {
+    const postshow = axios.post("https://back-pg.herokuapp.com/newsletter", {
       nameTheater,
     });
 
@@ -373,7 +373,7 @@ export function postNewsletterShow(nameTheater) {
 
 export function postPasswordRecoveryViewer(email) {
   try {
-    const postEmail = axios.post("http://localhost:3001/resetPasswordViewer", {
+    const postEmail = axios.post("https://back-pg.herokuapp.com/resetPasswordViewer", {
       email,
     });
 
@@ -388,7 +388,7 @@ export function postPasswordRecoveryViewer(email) {
 
 export function postPasswordRecoveryTheater(email) {
   try {
-    const postEmail = axios.post("http://localhost:3001/resetPasswordTheater", {
+    const postEmail = axios.post("https://back-pg.herokuapp.com/resetPasswordTheater", {
       email,
     });
 
