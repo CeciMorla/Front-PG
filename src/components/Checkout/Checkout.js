@@ -27,27 +27,27 @@ export default function Checkout({
   // var equalShowId = show?.filter((s) => s?.showId === Number(showId));
 
   // console.log(equalShowId); // me trae solo los tickets de los asientos disponibles
-   var total = 0;
-   if (seatNumber.length > 0) {
-    total = preciofinal * seatNumber?.length;
-   }
 
   function buttonMp() {
     dispatch(checkoutPay({ seatNumber, showId, idViewer }));
   }
-
-
 
   const [tiempo, setTiempo] = useState({
     dia: 0,
     hora: 0,
   });
   const [preciofinal, setPreciofinal] = useState("");
+  var ticketPrice = Number(preciofinal);
   const [porcentaje, setPorcentaje] = useState(null);
   const [decodShowId] = useState("");
   const newrelased = {
     released: true,
   };
+
+  var total = 0;
+  if (seatNumber.length > 0) {
+      total = ticketPrice * seatNumber?.length;
+    }
   
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
@@ -85,7 +85,6 @@ export default function Checkout({
       dia: days,
       hora: hours,
     });
-    console.log(tiempo.dia);
     numerodeporcentaje();
   };
   const handleComplete  = ()=>{
@@ -119,7 +118,7 @@ export default function Checkout({
   }
 
   let dateTimer = `${show?.date} ${show?.time}`;
-  
+
   return (
     <div>
       <div className={style.inputContainer}>
