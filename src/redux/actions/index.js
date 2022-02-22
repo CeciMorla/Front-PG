@@ -401,6 +401,13 @@ export function postPasswordRecoveryTheater(email) {
   }
 }
 
+export function totalPrice(payload) {
+  return {
+    type: TOTAL_PRICE,
+    payload
+  }
+}
+
 export const ORDER_PRICE = "ORDER_PRICE";
 export const FILTER_PROVINCE = "FILTER_PROVINCE";
 export const POST_SHOW = "POST_SHOW";
@@ -433,3 +440,4 @@ export const POST_PASSWORD_RECOVERY_THEATER = "POST_PASSWORD_RECOVERY_THEATER";
 export const DELETE_THEATRER = "DELETE_THEATRER";
 export const GET_TICKET_PAY = "GET_TICKET_PAY";
 export const PUT_SHOW = "PUT_SHOW";
+export const TOTAL_PRICE = 'TOTAL_PRICE';

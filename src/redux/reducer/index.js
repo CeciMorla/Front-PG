@@ -24,6 +24,7 @@ import {
   POST_PASSWORD_RECOVERY_VIEWER,
   POST_PASSWORD_RECOVERY_THEATER,
   GET_TICKET_PAY,
+  TOTAL_PRICE,
 } from "../actions/index.js";
 
 const initialState = {
@@ -42,6 +43,7 @@ const initialState = {
   filtersTheaters: [],
   filtersGenres: [],
   filtersRates: [],
+  totalPrice: '',
 };
 
 function rootReducer(state = initialState, action) {
@@ -346,6 +348,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         tickets: action.payload
+      }
+    case TOTAL_PRICE:
+      return {
+        ...state,
+        totalPrice: action.payload
       }
     default:
       return state;
