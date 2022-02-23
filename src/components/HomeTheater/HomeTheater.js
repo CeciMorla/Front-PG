@@ -16,9 +16,9 @@ const HomeTheater = () => {
   const shows = useSelector((state) => state.shows);
   const theater = useSelector((state) => state.theatersDetail);
   let { id } = useParams();
-  
-  let img = window.sessionStorage.getItem("img").valueOf();
-  console.log("img", img);
+  const {imgT} = useUser();
+  //let img = window.sessionStorage.getItem("img").valueOf();
+  //console.log("img", img);
   
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const HomeTheater = () => {
 
   return (
     <div className={style.homeContainer}>
-      <NavBarTheater id={id} img={img} name={theater?.name} />
+      <NavBarTheater id={id} img={imgT} name={theater?.name} />
 
       <div className={style.showsContainer}>
         {filterShows?.length ? (

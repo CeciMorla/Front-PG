@@ -28,7 +28,7 @@ const useUser = () => {
           window.sessionStorage.setItem("img", data.img);
           setStatus(data.isLogged);
           setStatusIdT(window.sessionStorage.getItem('id').valueOf())
-          setImgT(window.sessionStorage.getItem('img').valueOf())
+          setImgT(window.sessionStorage.getItem('img')?.valueOf())
           }
           
         })
