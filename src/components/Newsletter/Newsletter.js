@@ -18,7 +18,7 @@ const Newsletter = () => {
     nameTheater: "",
   });
   
-  let img = window.sessionStorage.getItem('img').valueOf();
+  
   
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const Newsletter = () => {
   return (
     <div>
       <div className={style.navContainer}>
-        <NavBarPerfilViewer img={img} name={detail?.name} />
+        <NavBarPerfilViewer name={detail?.name} />
       </div>
       <div className={style.newsletter}>
         <h2 className={style.title}>
