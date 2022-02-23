@@ -31,7 +31,7 @@ const FormTheater = () => {
   const onSubmit = (data) => {
     let inputs = {
       name: data.name,
-      image: data.image,
+      //image: data.image,
       CUIT: data.CUIT,
       adress: data.adress,
       email: data.email,
@@ -266,7 +266,7 @@ const FormTheater = () => {
             </span>
           </div>
 
-          <div className="col-md-12">
+          {/*<div className="col-md-12">
             <label>Imagen de perfil</label>
             <input
               type="url"
@@ -278,7 +278,7 @@ const FormTheater = () => {
               className="form-control my-2"
               {...register("image", {})}
             />
-          </div>
+            </div>*/}
           <div>
             <button className="btn btn-dark" type="submit">
               Registra Teatro

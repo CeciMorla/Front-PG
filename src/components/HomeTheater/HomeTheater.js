@@ -9,14 +9,14 @@ import {
 } from "../../redux/actions/index.js";
 import ShowCardTheater from "../ShowCard/ShowCardTheater.js";
 import style from "./HomeTheater.module.css";
-import useUser from "../../hooks/useUser";
+
 
 const HomeTheater = () => {
   const dispatch = useDispatch();
   const shows = useSelector((state) => state.shows);
   const theater = useSelector((state) => state.theatersDetail);
   let { id } = useParams();
-  const {imgT} = useUser();
+  
   //let img = window.sessionStorage.getItem("img").valueOf();
   //console.log("img", img);
   
@@ -35,7 +35,7 @@ const HomeTheater = () => {
 
   return (
     <div className={style.homeContainer}>
-      <NavBarTheater id={id} img={imgT} name={theater?.name} />
+      <NavBarTheater id={id} name={theater?.name} />
 
       <div className={style.showsContainer}>
         {filterShows?.length ? (

@@ -16,7 +16,7 @@ const SalesHistory = () => {
   const theater = useSelector((state) => state.theatersDetail);
   const { id } = useParams();
   
-  let img = window.sessionStorage.getItem("img").valueOf();
+  
   
   useEffect(() => {
     dispatch(getAllTickets());
@@ -38,7 +38,7 @@ const SalesHistory = () => {
 
   return (
     <div>
-      <NavBarTheater id={id} img={img} name={theater?.name} />
+      <NavBarTheater id={id} name={theater?.name} />
       <div className={style.totalSales}>
         <h1>
           Venta total al día de hoy:<b> ${finalTotal}</b>

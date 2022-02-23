@@ -24,7 +24,7 @@ const FormPutViewer = () => {
     formState: { errors },
   } = useForm();
   
-  let img = window.sessionStorage.getItem('img').valueOf();
+  
  
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const FormPutViewer = () => {
     const cara = {
       name: data.name,
       password: data.password,
-      image: data.image,
+      //image: data.image,
     };
     swal({
       title: "Por favor confirma tus cambios",
@@ -92,7 +92,7 @@ const FormPutViewer = () => {
     <div className={style.formViewerContainer}>
       <div className={style.nav}>
         <NavBarPerfilViewer
-          img={img}
+          
           id={id}
           name={detail?.name}
         />
@@ -106,15 +106,15 @@ const FormPutViewer = () => {
 
       <div className={style.formViewerPut}>
         <form onSubmit={handleSubmit(onSubmit)} className="row g-3">
-          <div className="col-md-6">
+          {/*<div className="col-md-6">
             <img
               src={detail?.image}
               alt="imagen de perfil"
               className={style.imagen}
             />
-          </div>
+          </div>*/}
 
-          <div className="col-md-6">
+          {/*<div className="col-md-6">
             <label className="form-label col-lg-12">Imagen de Perfil: </label>
             {edit === false ? (
               <input
@@ -133,7 +133,7 @@ const FormPutViewer = () => {
                 {...register("image")}
               />
             )}
-          </div>
+            </div>*/}
 
           <div className="col-md-6">
             <label className="form-label col-lg-12">Nombre</label>

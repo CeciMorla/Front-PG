@@ -30,7 +30,7 @@ export default function NavBarViewer({ img, name }) {
             <p className={style.logo}>A Sala Llena</p>
           </Navbar.Brand>
           <div className={style.profileContainer}>
-            <img className={style.profileImage} src={img} alt="img" />
+           {/* <img className={style.profileImage} src={img} alt="img" />*/}
             <p className={style.name}>Hola {name}!</p>
           </div>
           <div className={style.searchContainer}>

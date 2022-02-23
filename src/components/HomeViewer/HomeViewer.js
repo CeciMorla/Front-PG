@@ -25,7 +25,7 @@ const HomeViewer = () => {
     setActualPage(number);
   };
   
-  let img = window.sessionStorage.getItem("img")?.valueOf();
+  
   
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const HomeViewer = () => {
         <NavBarViewer
           setActualPage={setActualPage}
           setOrder={setOrder}
-          img={img}
+          
           name={detail?.name}
         />
       </div>

@@ -35,7 +35,7 @@ const FormViewers = () => {
       name: data.name,
       email: data.email,
       password: data.password,
-      image: data.image,
+      //image: data.image,
       province: data.province,
     };
     postViewer(inputs);
@@ -166,7 +166,7 @@ const FormViewers = () => {
             }
           </div>
 
-          <div className="col-md-6">
+          {/*<div className="col-md-6">
             <label>Imagen de perfil</label>
             <input
               type="url"
@@ -178,9 +178,9 @@ const FormViewers = () => {
               className="form-control"
               {...register("image", {})}
             />
-          </div>
+          </div>*/}
 
-          <div className="col-md-6">
+          <div className="col-md-12">
             <label>Seleccione la Provincia</label>
 
             <select

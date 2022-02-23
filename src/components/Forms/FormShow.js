@@ -38,7 +38,7 @@ const FormShow = () => {
     `${minfechaaño}-${minfechames1}-${maxfechadia}`
   );
   
-  let img = window.sessionStorage.getItem('img').valueOf();
+  
   
 
   useEffect(() => {
@@ -102,7 +102,7 @@ const FormShow = () => {
 
   return (
     <div className={style.formShowContainer}>
-      <NavBarTheater id={id} img={img} name={theater?.name} />
+      <NavBarTheater id={id} name={theater?.name} />
 
       <div className={style.formShowCreate}>
         <div className="text-center padding">

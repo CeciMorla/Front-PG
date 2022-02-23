@@ -28,7 +28,7 @@ const EditProfileTheater = () => {
   };
 
   
-  let img = window.sessionStorage.getItem('img').valueOf();
+  
 
   
 
@@ -40,7 +40,7 @@ const EditProfileTheater = () => {
     const cara = {
       name: data.name,
       password: data.password,
-      image: data.image,
+      //image: data.image,
       adress: data.adress,
       phoneNumber: data.phoneNumber,
     };
@@ -81,7 +81,7 @@ const EditProfileTheater = () => {
   }
   return (
     <div>
-      <NavBarTheater img={img} id={id} name={detail?.name} />
+      <NavBarTheater id={id} name={detail?.name} />
       <div className={style.formTheaterContainer}>
         <div>
           <button
@@ -94,7 +94,7 @@ const EditProfileTheater = () => {
         </div>
         <div className={style.formTheaterPut}>
           <form onSubmit={handleSubmit(onSubmit)} className="row g-3">
-            <div className="col-md-6">
+            {/*<div className="col-md-6">
               <img
                 src={detail?.image}
                 alt="imagen de perfil"
@@ -121,7 +121,7 @@ const EditProfileTheater = () => {
                   {...register("image")}
                 />
               )}
-            </div>
+              </div>*/}
 
             <div className="col-md-6">
               <label className="form-label col-lg-12">Nombre</label>
