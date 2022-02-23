@@ -12,7 +12,7 @@ const useUser = () => {
   const [statusIdV,setStatusIdV] = useState('');
   const [statusIdT,setStatusIdT] = useState('');
   const [imgV,setImgV] = useState('');
-  const [imgT,setImgT] = useState('')
+  const [imgT,setImgT] = useState('');
   console.log(imgT)
   console.log(statusIdT)
   const login = useCallback(
