@@ -22,9 +22,6 @@ const ViewerHistory = () => {
   const { id } = useParams();
   
   let img = window.sessionStorage.getItem('img').valueOf();
-  let showID;
-  let theaterID;
-
   
 
   useEffect(() => {
@@ -39,40 +36,12 @@ const ViewerHistory = () => {
     setButton(false);
   }
 
-  console.log("ticket", ticket);
-  let filterTicket = ticket?.filter((e) => e.viewerId === viewer.id);
-  console.log("filterTicket", filterTicket);
+  let filterTickets = ticket?.filter(e => e.viewerId === viewer?.id)
+  let filterTicketsShow = filterTickets?.filter(e => e.showId === Number(idShow))
+  let filterTheaterId = filterTicketsShow?.map(e => e.show?.theaterId)
+  let filterTheater = theater?.find(e => e.id === filterTheaterId[0])
 
-  for (let i = 0; i < filterTicket?.length; i++) {
-    showID = filterTicket[i].showId;
-  }
-  console.log(showID);
-
-  let filterShow = show?.filter((e) => e.id === showID);
-  console.log("filterShow", filterShow);
-
-  let showStatus = filterShow?.map((e) => e.released);
-  console.log("showStatus", showStatus);
-
-  let status;
-
-  for (let e = 0; e < showStatus?.length; e++) {
-    status = showStatus[e];
-  }
-
-  console.log("status", status);
-
-  for (let j = 0; j < filterShow?.length; j++) {
-    theaterID = filterShow[j].theaterId;
-  }
-  console.log("theaterID", theaterID);
-
-  let total = filterTicket?.map((e) => e.price);
-
-  console.log(total);
-
-  let filterTheater = theater?.find((e) => e.id === theaterID);
-  console.log("filterTheater", filterTheater);
+  console.log('filterTicketsShow',filterTicketsShow)
 
   return (
     <div>

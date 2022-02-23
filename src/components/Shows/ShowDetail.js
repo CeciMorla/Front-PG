@@ -204,14 +204,20 @@ const ShowDetail = () => {
           {/* //---------------------------------- */}
 
           <div className={style.btnContainer}>
+          {show?.seatsAvailable?.length > 0 && show?.released === false? (
             <Link
               to={`/pasarela/${id}/${idV}`}
               style={{ textDecoration: "none" }}
             >
-              <Button className={style.btn} variant="dark" onClick={onSubmit}>
+                <Button className={style.btn} variant="dark" onClick={onSubmit}>
                 Comprar
               </Button>
-            </Link>
+              </Link>
+              ) : (
+                <Button disabled className={style.btn} variant="dark" onClick={onSubmit}>
+                Comprar
+              </Button>
+              )}
           </div>
         </div>
       </div>

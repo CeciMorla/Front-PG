@@ -48,11 +48,10 @@ const ShowCard = ({
               <Card.Title className={style.title}>{name}</Card.Title>
               <Card.Text>
                 <p className={style.subtitle}>{province}</p>
-                <p className={style.subtitle}>El espectaculo comienza en: </p>
                 {seatsAvailable.length === 0 ? 
                   <h4>No hay entradas disponibles</h4> :                    
                   <div>                       
-                    <p className={style.subtitle}>El espectaculo comienza en: </p>
+                    <p className={style.subtitle}>El espectáculo comienza en: </p>
                     <Countdown date={timer} onComplete={handleComplete}>  
                      <div>                     
                        <p>La obra ya ha comenzado!</p>                   
@@ -80,11 +79,10 @@ const ShowCard = ({
                 <Card.Title className={style.title}>{name}</Card.Title>
                 <Card.Text>
                   <p className={style.subtitle}>{province}</p>
-                  <p className={style.subtitle}>El espectaculo comienza en: </p>
                   {seatsAvailable.length === 0 ? 
                   <h4>No hay entradas disponibles</h4> :                    
                   <div>                       
-                    <p className={style.subtitle}>El espectaculo comienza en: </p>
+                    <p className={style.subtitle}>El espectáculo comienza en: </p>
                     <Countdown date={timer} onComplete={handleComplete}>  
                      <div>                     
                        <p>La obra ya ha comenzado!</p>                   
