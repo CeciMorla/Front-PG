@@ -76,7 +76,7 @@ const SeatForm = ({
             </li>
             <li>
               <div className={`${style.seat} ${style.selected}`}></div>
-              <small className={style.label}>Seleccion</small>
+              <small className={style.label}>Selección</small>
             </li>
           </ul>
         ) : (

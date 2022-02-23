@@ -19,6 +19,7 @@ const ShowCard = ({
   time,
   score,
   idV,
+  seatsAvailable
 }) => {
   let timer = ` dias ${date} ${time}`;
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ const ShowCard = ({
     <div className={style.container}>
       {idV ? (
         <Link
-          to={`/showDetail/${btoa(id)}/${btoa(idV)}`}
+          to={`/showDetail/${id}/${idV}`}
           style={{ textDecoration: "none" }}
         >
           <Card
@@ -48,11 +49,19 @@ const ShowCard = ({
               <Card.Text>
                 <p className={style.subtitle}>{province}</p>
                 <p className={style.subtitle}>El espectaculo comienza en: </p>
-                <Countdown date={timer} onComplete={handleComplete}>
-                  <div>
-                    <p>La obra ya ha comenzado!</p>
+                {seatsAvailable.length === 0 ? 
+                  <h4>No hay entradas disponibles</h4> :                    
+                  <div>                       
+                    <p className={style.subtitle}>El espectaculo comienza en: </p>
+                    <Countdown date={timer} onComplete={handleComplete}>  
+                     <div>                     
+                       <p>La obra ya ha comenzado!</p>                   
+                       </div>                 
+                       </Countdown>
                   </div>
-                </Countdown>
+                  }
+                  
+                
               </Card.Text>
             </Card.Body>
           </Card>
@@ -72,11 +81,18 @@ const ShowCard = ({
                 <Card.Text>
                   <p className={style.subtitle}>{province}</p>
                   <p className={style.subtitle}>El espectaculo comienza en: </p>
-                  <Countdown date={timer} onComplete={handleComplete}>
-                    <div>
-                      <p>La obra ya ha comenzado!</p>
-                    </div>
-                  </Countdown>
+                  {seatsAvailable.length === 0 ? 
+                  <h4>No hay entradas disponibles</h4> :                    
+                  <div>                       
+                    <p className={style.subtitle}>El espectaculo comienza en: </p>
+                    <Countdown date={timer} onComplete={handleComplete}>  
+                     <div>                     
+                       <p>La obra ya ha comenzado!</p>                   
+                       </div>                 
+                       </Countdown>
+                  </div>
+                  }
+                    
                 </Card.Text>
               </Card.Body>
             </Card>

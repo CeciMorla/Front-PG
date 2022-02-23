@@ -91,7 +91,7 @@ const LogInViewer = () => {
 
       <div className={style.loginContainer}>
         {statusIdV ? (
-          <Redirect to={`/viewerHome/${btoa(statusIdV)}`} />
+          <Redirect to={`/viewerHome/${statusIdV}`} />
         ) : (
           <form onSubmit={handleSubmit}>
             <Form onSubmit={handleSubmit}>
@@ -139,7 +139,7 @@ const LogInViewer = () => {
         </div>
         <Link to="/passwordRecoveryViewer">¿Olvidaste tu contraseña?</Link>
         {idV > 0 ? (
-          <Redirect to={`/viewerHome/${btoa(idV)}`} />
+          <Redirect to={`/viewerHome/${idV}`} />
         ) : (
           <form className={style.googleContainer}>
             <GoogleLogin

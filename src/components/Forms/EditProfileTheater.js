@@ -27,17 +27,14 @@ const EditProfileTheater = () => {
     edit === false ? setEdit(true) : setEdit(false);
   };
 
-  const [decod, setDecod] = useState("");
+  
   let img = window.sessionStorage.getItem('img').valueOf();
 
-  useEffect(async () => {
-    await setDecod(atob(id));
-    console.log("decod", decod);
-  }, [id]);
+  
 
   useEffect(() => {
-    dispatch(theaterDetail(decod));
-  }, [dispatch, decod]);
+    dispatch(theaterDetail(id));
+  }, [dispatch, id]);
 
   function onSubmit(data) {
     const cara = {
@@ -53,7 +50,7 @@ const EditProfileTheater = () => {
       buttons: ["Cancel", "Confirm"],
     }).then((res) => {
       if (res) {
-        dispatch(editProfileT(decod, cara));
+        dispatch(editProfileT(id, cara));
         swal("Teatro actualizado!", "", "success");
         setEdit(false);
         history.push(`/theaterHome/${id}`);
@@ -75,7 +72,7 @@ const EditProfileTheater = () => {
         swal("Teatro borrado con éxito", {
           icon: "success",
         });
-        dispatch(deleteTheater(decod));
+        dispatch(deleteTheater(id));
         history.push("/");
       } else {
         swal("Tu teatro seguirá con vida ✔👀!");
@@ -84,7 +81,7 @@ const EditProfileTheater = () => {
   }
   return (
     <div>
-      <NavBarTheater img={img} id={decod} name={detail?.name} />
+      <NavBarTheater img={img} id={id} name={detail?.name} />
       <div className={style.formTheaterContainer}>
         <div>
           <button

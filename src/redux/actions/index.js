@@ -346,9 +346,9 @@ export function checkoutPay({ seatNumber, showId, idViewer }) {
   };
 }
 
-export function getTicketPay({ seatNumber, decodIdN, decodIdVn, status }) {
+export function getTicketPay({ seatNumber, id, idV, status }) {
   return async function (dispatch) {
-    var resp = await axios.get(`https://back-pg.herokuapp.com/tickets/finish/${decodIdN}/${decodIdVn}/${seatNumber}/${status}`)
+    var resp = await axios.get(`https://back-pg.herokuapp.com/tickets/finish/${id}/${idV}/${seatNumber}/${status}`)
       return dispatch({
         type: GET_TICKET_PAY,
         payload: resp.data

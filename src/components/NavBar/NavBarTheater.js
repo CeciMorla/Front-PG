@@ -25,7 +25,7 @@ export default function NavBarTheater({ id, img, name }) {
         expand={false}
       >
         <Container fluid>
-          <Navbar.Brand href={`/theaterHome/${btoa(id)}`}>
+          <Navbar.Brand href={`/theaterHome/${id}`}>
             <p className={style.logo}>A Sala Llena</p>
           </Navbar.Brand>
           <div className={style.profileContainer}>
@@ -45,17 +45,17 @@ export default function NavBarTheater({ id, img, name }) {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item href={`/create/${btoa(id)}`}>
-                  <Button variant="outline-dark" href={`/create/${btoa(id)}`}>
+                <Dropdown.Item href={`/create/${id}`}>
+                  <Button variant="outline-dark" href={`/create/${id}`}>
                     Agregar espectáculos
                   </Button>
                 </Dropdown.Item>
-                <Dropdown.Item href={`/salesHistory/${btoa(id)}`}>
+                <Dropdown.Item href={`/salesHistory/${id}`}>
                   <Button variant="outline-dark">Ventas</Button>
                 </Dropdown.Item>
                 <Dropdown.Item
                   onClick={() =>
-                    history.push(`/editProfileTheater/${btoa(id)}`)
+                    history.push(`/editProfileTheater/${id}`)
                   }
                 >
                   <Button variant="outline-dark">Perfil</Button>

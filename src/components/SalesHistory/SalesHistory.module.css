@@ -11,3 +11,15 @@
 .card {
   margin: 2rem;
 }
+
+.totalSales {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40rem;
+  height: 8rem;
+  margin: auto;
+  align-items: center;
+  box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}

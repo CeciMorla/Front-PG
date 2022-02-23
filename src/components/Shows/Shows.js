@@ -19,6 +19,7 @@ const Shows = ({ actualShow, idV }) => {
           score={e.score}
           time={e.time}
           idV={idV}
+          seatsAvailable={e.seatsAvailable}
         />
       ))}
     </div>

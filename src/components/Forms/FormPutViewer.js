@@ -23,16 +23,13 @@ const FormPutViewer = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [decod, setDecod] = useState("");
+  
   let img = window.sessionStorage.getItem('img').valueOf();
-  useEffect(async () => {
-    await setDecod(atob(id));
-    console.log("decod", decod);
-  }, [id]);
+ 
 
   useEffect(() => {
-    dispatch(getViewerDetail(decod));
-  }, [dispatch, decod]);
+    dispatch(getViewerDetail(id));
+  }, [dispatch, id]);
 
   const changeEdit = () => {
     edit === false ? setEdit(true) : setEdit(false);
@@ -50,7 +47,7 @@ const FormPutViewer = () => {
       buttons: ["Cancel", "Confirm"],
     }).then((res) => {
       if (res) {
-        dispatch(putViewer(decod, cara));
+        dispatch(putViewer(id, cara));
         swal({
           text: "Usuario actualizado con éxito",
           icon: "success",
@@ -80,7 +77,7 @@ const FormPutViewer = () => {
           icon: "success",
           button: false,
         });
-        dispatch(deleteViewer(decod));
+        dispatch(deleteViewer(id));
         history.push("/");
       } else {
         swal({
@@ -96,7 +93,7 @@ const FormPutViewer = () => {
       <div className={style.nav}>
         <NavBarPerfilViewer
           img={img}
-          id={decod}
+          id={id}
           name={detail?.name}
         />
       </div>

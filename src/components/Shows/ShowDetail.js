@@ -19,21 +19,18 @@ const ShowDetail = () => {
   });
   const [preciofinal, setPreciofinal] = useState("");
   const [porcentaje, setPorcentaje] = useState(null);
-  const [decodShowId, setDecodShowId] = useState("");
-  const [decodViewerId, setDecodViewerId] = useState("");
+  
+  
   const newrelased = {
     released: true,
   };
-  useEffect(async () => {
-    await setDecodShowId(atob(id));
-    await setDecodViewerId(atob(idV));
-  }, [id, idV]);
+  
 
   useEffect(() => {
-    if (decodShowId > 0) {
-      dispatch(showDetail(decodShowId));
-    }
-  }, [dispatch, decodShowId]);
+    
+      dispatch(showDetail(id));
+    
+  }, [dispatch, id]);
 
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
@@ -72,7 +69,7 @@ const ShowDetail = () => {
     numerodeporcentaje();
   };
   const handleComplete  = ()=>{
-    dispatch(putShow(decodShowId, newrelased));
+    dispatch(putShow(id, newrelased));
     
   }
 

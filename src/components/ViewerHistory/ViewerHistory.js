@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import {
   allShows,
   getViewerDetail,
@@ -20,22 +20,19 @@ const ViewerHistory = () => {
   const theater = useSelector((state) => state.theaters);
   const [button, setButton] = useState(true);
   const { id } = useParams();
-  const [decod, setDecod] = useState("");
+  
   let img = window.sessionStorage.getItem('img').valueOf();
   let showID;
   let theaterID;
 
-  useEffect(async () => {
-    await setDecod(atob(id));
-    console.log("decod", decod);
-  }, [id]);
+  
 
   useEffect(() => {
     dispatch(allShows());
-    dispatch(getViewerDetail(decod));
+    dispatch(getViewerDetail(id));
     dispatch(getAllTickets());
     dispatch(allTheaters());
-  }, [dispatch, decod]);
+  }, [dispatch, id]);
 
   function onClick(e) {
     e.preventDefault();
@@ -106,6 +103,11 @@ const ViewerHistory = () => {
                           })}
                         </h5>
                       </Card.Text>
+                      <Link to={`/ticket/${id}/${e.id}`}>
+                      <Button variant="dark">
+                        Descargar Ticket
+                      </Button>
+                      </Link>
                     </Card.Body>
                   </Card>
                 </div>

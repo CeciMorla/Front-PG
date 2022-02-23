@@ -145,7 +145,7 @@ const useUser = () => {
     setId(null);
     setImgT(null);
     setImgV(null);
-    window.location.href="https://front-pg.vercel.app"
+    window.location.href="https://front-pg.vercel.app/"
   }, [setStatus,setLoginData,setId])
 
   return {

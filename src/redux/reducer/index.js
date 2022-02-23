@@ -306,6 +306,7 @@ function rootReducer(state = initialState, action) {
 
     case GET_ALL_ViEWERS:
       return {
+        ...state,
         viewers: action.payload,
       };
     case GET_SHOW_BY_NAME:

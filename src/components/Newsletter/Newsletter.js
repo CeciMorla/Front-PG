@@ -17,12 +17,9 @@ const Newsletter = () => {
     isSubscribed: false,
     nameTheater: "",
   });
-  const [decod, setDecod] = useState("");
+  
   let img = window.sessionStorage.getItem('img').valueOf();
-  useEffect(async () => {
-    await setDecod(atob(id));
-    console.log("decod", decod);
-  }, [id]);
+  
 
   useEffect(() => {
     dispatch(allTheaters());
@@ -46,8 +43,8 @@ const Newsletter = () => {
 
   const HandleSubmit = (e) => {
     e.preventDefault();
-    dispatch(putViewer(decod, { isSubscribed: input.isSubscribed }));
-    dispatch(createFavorites(decod, { nameTheater: input.nameTheater }));
+    dispatch(putViewer(id, { isSubscribed: input.isSubscribed }));
+    dispatch(createFavorites(id, { nameTheater: input.nameTheater }));
     console.log(input);
     swal({
       icon: "success",

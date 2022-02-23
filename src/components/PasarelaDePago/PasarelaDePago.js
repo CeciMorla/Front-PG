@@ -18,17 +18,11 @@ const PasarelaDePago = ({ props }) => {
   const { id, idV } = useParams();
   //const [tickets , setTickets]= useState()
   //let variable = false;
-  const [decodShowId, setDecodShowId] = useState("");
-  const [decodViewerId, setDecodViewerId] = useState("");
-
-  useEffect(async () => {
-    await setDecodShowId(atob(id));
-    await setDecodViewerId(atob(idV));
-  }, [id, idV]);
+  
   useEffect(() => {
     dispatch(getAllTickets());
-    dispatch(showDetail(decodShowId));
-  }, [dispatch, decodShowId]);
+    dispatch(showDetail(id));
+  }, [dispatch, id]);
   // console.log(tickets, "Tickets")
   return (
     <div>
@@ -57,7 +51,7 @@ const PasarelaDePago = ({ props }) => {
           <label>{seatNumber}</label>
           <div
             className={`${style.operation} ${style.sum}`}
-            onClick={sillas && seatNumber < sillas.length
+            onClick={sillas && seatNumber < sillas?.length
                 ? () => setSeatNumber(seatNumber + 1)
                 : seatNumber < JSON.parse(window.localStorage.getItem("show")).length?
                   () => setSeatNumber(seatNumber + 1)
@@ -70,8 +64,8 @@ const PasarelaDePago = ({ props }) => {
         <Seat
           seatsNumber={seatNumber}
           show={show}
-          id={decodShowId}
-          idV={decodViewerId}
+          id={id}
+          idV={idV}
         />
       </div>
     </div>

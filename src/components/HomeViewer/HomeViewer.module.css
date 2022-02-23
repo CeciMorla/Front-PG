@@ -17,6 +17,10 @@
   justify-content: center;
 }
 
+.noShows {
+  min-height: 60vh;
+}
+
 @media (max-width: 768px) {
   .showsContainer {
     width: 24rem;

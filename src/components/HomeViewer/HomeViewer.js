@@ -24,16 +24,14 @@ const HomeViewer = () => {
   const paginate = (number) => {
     setActualPage(number);
   };
-  const [decod, setDecod] = useState("");
-  let img = window.sessionStorage.getItem('img').valueOf();
-  useEffect(async () => {
-    await setDecod(atob(id));
-  }, [id]);
+  
+  let img = window.sessionStorage.getItem("img").valueOf();
+  
 
   useEffect(() => {
-    dispatch(getViewerDetail(decod));
+    dispatch(getViewerDetail(id));
     dispatch(allShows());
-  }, [dispatch, decod]);
+  }, [dispatch, id]);
 
   const shows = allshows?.filter(
     (e) => e.theater?.province === detail?.province
@@ -52,18 +50,21 @@ const HomeViewer = () => {
       </div>
       <div className={style.carouselContainer}>
         {shows?.length > 0 ? (
-          <CarouselContainer allshows={shows} decod={decod}/>
+          <CarouselContainer allshows={shows} decod={id} />
         ) : (
-          <CarouselContainer allshows={allshows} decod={decod}/>
+          <CarouselContainer allshows={allshows} decod={id} />
         )}
       </div>
       <div className={style.showsContainer}>
         {actualShow?.length ? (
-          <Shows actualShow={actualShow} idV={decod} />
+          <Shows actualShow={actualShow} idV={id} />
         ) : (
-          <div>
-          <img src='https://media.giphy.com/media/q15kbCtGFqwx8wYx1n/giphy.gif' alt='img'/>
-          <p>No hay espectáculos que coincidan</p>
+          <div className={style.noShows}>
+            <img
+              src="https://media.giphy.com/media/q15kbCtGFqwx8wYx1n/giphy.gif"
+              alt="img"
+            />
+            <p>No hay espectáculos que coincidan</p>
           </div>
         )}
       </div>

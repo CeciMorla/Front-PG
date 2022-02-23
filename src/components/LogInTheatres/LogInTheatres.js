@@ -89,7 +89,7 @@ const LogInTheatres = () => {
 
       <div className={style.loginContainer}>
         {statusIdT ? (
-          <Redirect to={`/theaterHome/${btoa(statusIdT)}`} />
+          <Redirect to={`/theaterHome/${statusIdT}`} />
         ) : (
           <form onSubmit={handleSubmit}>
             <Form>
@@ -135,7 +135,7 @@ const LogInTheatres = () => {
         </div>
         <Link to="/passwordRecoveryTheater">¿Olvidaste tu contraseña?</Link>
         {idT > 0 ? (
-          <Redirect to={`/theaterHome/${btoa(idT)}`} />
+          <Redirect to={`/theaterHome/${idT}`} />
         ) : (
           <form className={style.googleContainer}>
             <GoogleLogin
