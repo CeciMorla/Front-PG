@@ -95,7 +95,7 @@ const ViewerHistory = () => {
                         <p>
                           Función: {e.date} {e.time}
                         </p>
-                        <h5>Cantidad: {filterTicket?.length}</h5>
+                        {/*<h5>Cantidad: {filterTicket?.length}</h5>*/}
                         <h5>
                           Total: $
                           {total?.reduce(function (a, b) {

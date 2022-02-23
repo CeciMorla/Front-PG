@@ -25,7 +25,7 @@ const HomeViewer = () => {
     setActualPage(number);
   };
   
-  let img = window.sessionStorage.getItem("img").valueOf();
+  let img = window.sessionStorage.getItem("img")?.valueOf();
   
 
   useEffect(() => {

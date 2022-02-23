@@ -15,6 +15,7 @@ const Footer = () => {
       </div>
       <div className={style.data}>
         <h5>Contacto</h5>
+        <p>asalallenaapp@gmail.com</p>
         <p>Buenos Aires, Argentina</p>
         <p>Copyright © 2022 - A Sala Llena</p>
       </div>
