@@ -9,7 +9,7 @@ import style from "./RedirectCheckout.module.css";
 export default function RedirectCheckout() {
   const { id, idV, seatNumber } = useParams();
   const dispatch = useDispatch();
-  let img = window.sessionStorage.getItem('img').valueOf();
+  
   const [price, ] = useState(JSON.parse(window.localStorage.getItem("price")));
   const queryParams = window.location.search;
   const statusQuery = new URLSearchParams(queryParams)
@@ -61,7 +61,7 @@ export default function RedirectCheckout() {
   return (
     <div>
       <div>
-        <NavBarPerfilViewer img={img} name={viewerDetail?.name} />
+        <NavBarPerfilViewer name={viewerDetail?.name} />
         <h2 className={style.title}>
           Muchas gracias {viewerDetail?.name} por comprar en A Sala Llena
         </h2>
