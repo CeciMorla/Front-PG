@@ -14,5 +14,12 @@
 <p>React-Icons</p>
 <p>Sweetalert</p>
 
-
+<p>
+<img width="45%" src = './img/Screenshot_1.jpg' alt='img1'>
+<img width="45%" src = './img/Screenshot_9.jpg' alt='img2'>
+<br>
+<img width="30%" src = './img/3.jpeg' alt='img3'>
+<img width="30%" src = './img/2.jpeg' alt='img4'>
+<img width="30%" src = './img/1.jpeg' alt='img5'>
+</p>
 
